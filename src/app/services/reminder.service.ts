@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Reminder} from '../models/reminder';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +61,13 @@ export class ReminderService {
   // mocking for now
   getReminders() {
     return Promise.resolve(this.reminders);
+  }
+
+  addReminder(user: User, reminder: Reminder) {
+    // TODO:
+    console.log('adding fake reminder for ' + reminder.content);
+    console.log(user);
+    console.log(reminder);
+    return Promise.resolve(true);
   }
 }
