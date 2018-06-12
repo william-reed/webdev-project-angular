@@ -1,0 +1,44 @@
+<div>
+  <h1>SMS Reminder</h1>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Profile</h2>
+
+        <div class="form-group">
+          <label for="inputUsernameRegister">Username</label>
+          <input [(ngModel)]="user.username" type="text" id="inputUsernameRegister" class="form-control"
+                 placeholder="Username"
+                 name="username" required="" autofocus="">
+
+          <label for="inputPasswordRegister">Password</label>
+          <input [(ngModel)]="user.password" type="password" id="inputPasswordRegister" class="form-control"
+                 placeholder="Password"
+                 name="password" required="">
+
+          <label for="inputPhone">Phone Number</label>
+          <input [(ngModel)]="user.phone" type="tel" minlength="10" maxlength="10" placeholder="6313830359"
+                 id="inputPhone" name="phone" class="form-control">
+
+          <label for="inputCarrier">Carrier</label>
+          <select [(ngModel)]="user.carrier" class="form-control" id="inputCarrier" name="carrier">
+            <option *ngFor="let carrier of carriers">{{carrier}}</option>
+          </select>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+      </form>
+
+    </div>
+    <div class="col-md-6">
+      <app-new-reminder></app-new-reminder>
+      <hr/>
+      <div class="card">
+        <div class="card-header">
+          Previous Reminders
+        </div>
+        <app-reminderlist></app-reminderlist>
+      </div>
+    </div>
+  </div>
+</div>

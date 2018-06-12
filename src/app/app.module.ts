@@ -12,6 +12,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginRegisterComponent} from './login-register/login-register.component';
 import {AppRoutingModule} from './app-routing.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AppRoutingModule} from './app-routing.module';
     AnonNewReminderComponent,
     LoginComponent,
     RegisterComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
