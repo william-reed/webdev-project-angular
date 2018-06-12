@@ -6,14 +6,20 @@
       <p>Welcome to SMS Reminder!</p>
       <p>SMS Reminder allows you to schedule text messages to get reminders or various items sent to you in the
         future.</p>
-
+      <button class="btn btn-primary">Login / Register</button>
       <hr/>
       <app-anon-new-reminder></app-anon-new-reminder>
     </div>
 
     <div class="col-sm-6">
-      <h3>Recently sent reminders:</h3>
-      <app-reminderlist></app-reminderlist>
+      <div class="card">
+        <div class="card-header">
+          Recently sent reminders
+        </div>
+        <app-reminderlist></app-reminderlist>
+      </div>
+
+
     </div>
 
   </div>
