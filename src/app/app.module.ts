@@ -1,20 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { ReminderlistComponent } from './reminderlist/reminderlist.component';
+
+import {AppComponent} from './app.component';
+import {HomeComponent} from './home/home.component';
+import {ReminderlistComponent} from './reminderlist/reminderlist.component';
+import {NewReminderComponent} from './new-reminder/new-reminder.component';
+import { AnonNewReminderComponent } from './anon-new-reminder/anon-new-reminder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ReminderlistComponent
+    ReminderlistComponent,
+    NewReminderComponent,
+    AnonNewReminderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
