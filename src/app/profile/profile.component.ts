@@ -42,11 +42,11 @@ export class ProfileComponent implements OnInit {
       alert('Date and time not given');
       return;
     }
-    this.reminderService.addReminder(this.user, reminder);
+    this.reminderService.addReminder(reminder);
   }
 
   getReminders() {
-    this.reminderService.getRemindersForUser(this.user).then((reminders) => this.reminders = reminders);
+    this.reminderService.getRemindersForUser().then((reminders) => this.reminders = reminders);
   }
 
 }

@@ -21,7 +21,7 @@ export class ReminderListComponent implements OnInit {
   }
 
   getReminders(): void {
-    this.reminderService.getReminders().then((reminders: Reminder[]) => this.reminders = reminders);
+    this.reminderService.getReminders().then((reminders) => this.reminders = reminders);
   }
 
 }

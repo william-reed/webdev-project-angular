@@ -10,14 +10,36 @@ export class UserService {
   }
 
   login(username: String, password: String) {
+    return fetch('http://localhost:3000/api/login', {
+      body: JSON.stringify({username, password}),
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+
     // TODO: does information match server?
     // probably return something to handle session and tell page to redirect to profile
-    return true;
+  }
+
+  logout() {
+    return fetch('http://localhost:3000/api/logout', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
   }
 
   register(user: User) {
-    // TODO: validate with server and return redirect
-    return true;
+    return fetch('http://localhost:3000/api/user', {
+      body: JSON.stringify(user),
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+    // TODO: redirect
   }
 
   update(user: User) {

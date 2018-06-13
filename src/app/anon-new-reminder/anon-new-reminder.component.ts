@@ -53,7 +53,7 @@ export class AnonNewReminderComponent implements OnInit {
       return;
     }
 
-    this.reminderService.addReminder(anonUser, reminder);
+    this.reminderService.addAnonReminder(anonUser, reminder);
   }
 
 }

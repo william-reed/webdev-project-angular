@@ -60,16 +60,27 @@ export class ReminderService {
   // utilizing promises to ease the eventual transition to async web events
   // mocking for now
   getReminders() {
-    return Promise.resolve(this.reminders);
+    return fetch('http://localhost:3000/api/reminder')
+      .then(response => response.json());
   }
 
-  addReminder(user: User, reminder: Reminder) {
-    // TODO:
-    console.log('adding fake reminder for ' + reminder.content);
-    return Promise.resolve(true);
+  addReminder(reminder: Reminder) {
+    return fetch('http://localhost:3000/api/reminder', {
+      body: JSON.stringify(reminder),
+      credentials: 'include', // include, same-origin, *omit
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
   }
 
-  getRemindersForUser(user: User) {
-    return Promise.resolve(this.reminders);
+  addAnonReminder(user: User, reminder: Reminder) {
+    // TODO: create new user with this info and link reminder to it?
+  }
+
+  getRemindersForUser() {
+    return fetch('http://localhost:3000/api/user/reminders')
+      .then(response => response.json());
   }
 }
