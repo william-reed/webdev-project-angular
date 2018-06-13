@@ -1,21 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ReminderService} from '../services/reminder.service';
 import {Reminder} from '../models/reminder';
 
 @Component({
   selector: 'app-reminderlist',
-  templateUrl: './reminderlist.component.html',
-  styleUrls: ['./reminderlist.component.css']
+  templateUrl: './reminder-list.component.html',
+  styleUrls: ['./reminder-list.component.css']
 })
-export class ReminderlistComponent implements OnInit {
+export class ReminderListComponent implements OnInit {
 
-  reminders: Reminder[];
+  @Input() reminders: Reminder[];
 
   constructor(private reminderService: ReminderService) {
   }
 
   ngOnInit() {
-    this.getReminders();
+    if (this.reminders === undefined) {
+      this.getReminders();
+    }
   }
 
   getReminders(): void {

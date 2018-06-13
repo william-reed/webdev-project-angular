@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
-import {ReminderlistComponent} from './reminderlist/reminderlist.component';
+import {ReminderListComponent} from './reminderlist/reminder-list.component';
 import {NewReminderComponent} from './new-reminder/new-reminder.component';
 import {AnonNewReminderComponent} from './anon-new-reminder/anon-new-reminder.component';
 import {LoginComponent} from './login/login.component';
@@ -18,7 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    ReminderlistComponent,
+    ReminderListComponent,
     NewReminderComponent,
     AnonNewReminderComponent,
     LoginComponent,

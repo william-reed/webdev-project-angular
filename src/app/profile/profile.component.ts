@@ -13,6 +13,7 @@ import {ReminderService} from '../services/reminder.service';
 export class ProfileComponent implements OnInit {
   user: User = new User();
   carriers: String[];
+  reminders: Reminder[] = [];
 
   constructor(private carrierService: CarrierService, private userService: UserService,
               private reminderService: ReminderService) {
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getCarriers();
+    this.getReminders();
   }
 
   getCarriers(): void {
@@ -41,6 +43,10 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.reminderService.addReminder(this.user, reminder);
+  }
+
+  getReminders() {
+    this.reminderService.getRemindersForUser(this.user).then((reminders) => this.reminders = reminders);
   }
 
 }

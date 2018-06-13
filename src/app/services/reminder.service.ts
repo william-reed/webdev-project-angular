@@ -68,4 +68,8 @@ export class ReminderService {
     console.log('adding fake reminder for ' + reminder.content);
     return Promise.resolve(true);
   }
+
+  getRemindersForUser(user: User) {
+    return Promise.resolve(this.reminders);
+  }
 }
