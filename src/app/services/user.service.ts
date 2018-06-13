@@ -10,13 +10,18 @@ export class UserService {
   }
 
   login(username: String, password: String) {
-    // does information match server?
+    // TODO: does information match server?
     // probably return something to handle session and tell page to redirect to profile
     return true;
   }
 
   register(user: User) {
-    // validate with server and return redirect
+    // TODO: validate with server and return redirect
+    return true;
+  }
+
+  update(user: User) {
+    // TODO: just PUT to the server
     return true;
   }
 }
