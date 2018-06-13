@@ -3,11 +3,13 @@
 
   <div class="form-group">
     <label for="inputUsernameRegister">Username</label>
-    <input [(ngModel)]="user.username" type="text" id="inputUsernameRegister" class="form-control" placeholder="Username"
+    <input [(ngModel)]="user.username" type="text" id="inputUsernameRegister" class="form-control"
+           placeholder="Username"
            name="username" required="" autofocus="">
 
     <label for="inputPasswordRegister">Password</label>
-    <input [(ngModel)]="user.password" type="password" id="inputPasswordRegister" class="form-control" placeholder="Password"
+    <input [(ngModel)]="user.password" type="password" id="inputPasswordRegister" class="form-control"
+           placeholder="Password"
            name="password" required="">
 
     <label for="inputPhone">Phone Number</label>
@@ -19,5 +21,5 @@
       <option *ngFor="let carrier of carriers">{{carrier}}</option>
     </select>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="register(user)">Register</button>
 </form>
