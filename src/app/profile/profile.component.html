@@ -31,7 +31,8 @@
 
     </div>
     <div class="col-md-6">
-      <app-new-reminder></app-new-reminder>
+      <app-new-reminder #newReminder></app-new-reminder>
+      <button class="btn btn-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
       <hr/>
       <div class="card">
         <div class="card-header">

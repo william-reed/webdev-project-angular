@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user';
 import {CarrierService} from '../services/carrier.service';
 import {UserService} from '../services/user.service';
+import {Reminder} from '../models/reminder';
+import {ReminderService} from '../services/reminder.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +14,8 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
   carriers: String[];
 
-  constructor(private carrierService: CarrierService, private userService: UserService) {
+  constructor(private carrierService: CarrierService, private userService: UserService,
+              private reminderService: ReminderService) {
   }
 
   ngOnInit() {
@@ -26,6 +29,18 @@ export class ProfileComponent implements OnInit {
 
   updateUser() {
     this.userService.update(this.user);
+  }
+
+  addReminder(reminder: Reminder) {
+    if (!reminder.content) {
+      alert('Reminder text not given');
+      return;
+    }
+    if (!reminder.timeToSend) {
+      alert('Date and time not given');
+      return;
+    }
+    this.reminderService.addReminder(this.user, reminder);
   }
 
 }

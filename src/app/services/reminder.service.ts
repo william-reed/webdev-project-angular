@@ -66,8 +66,6 @@ export class ReminderService {
   addReminder(user: User, reminder: Reminder) {
     // TODO:
     console.log('adding fake reminder for ' + reminder.content);
-    console.log(user);
-    console.log(reminder);
     return Promise.resolve(true);
   }
 }
