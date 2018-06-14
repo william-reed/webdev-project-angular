@@ -13,6 +13,7 @@ export class UserService {
     return fetch('http://localhost:3000/api/login', {
       body: JSON.stringify({username, password}),
       method: 'post',
+      credentials: 'include',
       headers: {
         'content-type': 'application/json'
       }
@@ -38,6 +39,7 @@ export class UserService {
     return fetch('http://localhost:3000/api/user', {
       body: JSON.stringify(user),
       method: 'post',
+      credentials: 'include',
       headers: {
         'content-type': 'application/json'
       }
@@ -48,5 +50,13 @@ export class UserService {
   update(user: User) {
     // TODO: just PUT to the server
     return true;
+  }
+
+  profile() {
+    return fetch('http://localhost:3000/api/profile',
+      {
+        credentials: 'include', // include, same-origin, *omit
+      }).then(response => response.json());
+
   }
 }

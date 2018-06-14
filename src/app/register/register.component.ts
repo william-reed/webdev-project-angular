@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getCarriers(): void {
-    console.log('get carriers');
     this.carrierService.getCarriers().then((carriers) => this.carriers = carriers);
   }
 

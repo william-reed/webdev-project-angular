@@ -38,7 +38,7 @@
         <div class="card-header">
           Previous Reminders
         </div>
-        <app-reminderlist [reminders]="reminders"></app-reminderlist>
+        <app-reminderlist *ngIf="reminders.length === 0" [reminders]="reminders"></app-reminderlist>
       </div>
     </div>
   </div>

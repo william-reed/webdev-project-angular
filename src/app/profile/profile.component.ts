@@ -20,12 +20,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getProfile();
     this.getCarriers();
     this.getReminders();
   }
 
   getCarriers(): void {
-    console.log('get carriers');
     this.carrierService.getCarriers().then((carriers) => this.carriers = carriers);
   }
 
@@ -47,6 +47,10 @@ export class ProfileComponent implements OnInit {
 
   getReminders() {
     this.reminderService.getRemindersForUser().then((reminders) => this.reminders = reminders);
+  }
+
+  getProfile() {
+    this.userService.profile().then(user => this.user = user);
   }
 
 }
