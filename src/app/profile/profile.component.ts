@@ -4,6 +4,7 @@ import {CarrierService} from '../services/carrier.service';
 import {UserService} from '../services/user.service';
 import {Reminder} from '../models/reminder';
 import {ReminderService} from '../services/reminder.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +17,11 @@ export class ProfileComponent implements OnInit {
   reminders: Reminder[] = [];
 
   constructor(private carrierService: CarrierService, private userService: UserService,
-              private reminderService: ReminderService) {
+              private reminderService: ReminderService, private router: Router) {
   }
 
   ngOnInit() {
+    // TODO: check if they are already logged in
     this.getProfile();
     this.getCarriers();
     this.getReminders();
@@ -51,6 +53,10 @@ export class ProfileComponent implements OnInit {
 
   getProfile() {
     this.userService.profile().then(user => this.user = user);
+  }
+
+  logout() {
+    this.userService.logout().then(() => this.router.navigate(['login-register']));
   }
 
 }
