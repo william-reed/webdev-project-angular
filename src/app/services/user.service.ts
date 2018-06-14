@@ -16,10 +16,13 @@ export class UserService {
       headers: {
         'content-type': 'application/json'
       }
+    }).then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        return false;
+      }
     });
-
-    // TODO: does information match server?
-    // probably return something to handle session and tell page to redirect to profile
   }
 
   logout() {
