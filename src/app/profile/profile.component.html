@@ -36,9 +36,10 @@
       <hr/>
       <div class="card">
         <div class="card-header">
-          Previous Reminders
+          Reminders
         </div>
-        <app-reminderlist *ngIf="reminders.length === 0" [reminders]="reminders"></app-reminderlist>
+        <app-reminderlist *ngIf="reminders.length === 0; else showNoReminders" [reminders]="reminders"></app-reminderlist>
+        <div #showNoReminders class="card-body">No reminders yet.</div>
       </div>
     </div>
   </div>
