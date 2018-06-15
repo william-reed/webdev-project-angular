@@ -15,6 +15,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // redirect to profile if logged in
+    this.userService.loggedIn()
+      .then((res) => {
+        console.log(res);
+        if (res) {
+          this.router.navigate(['profile']);
+        }
+      });
   }
 
   login(username: String, password: String) {

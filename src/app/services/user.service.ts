@@ -59,7 +59,8 @@ export class UserService {
   }
 
   loggedIn() {
-    return fetch('http://localhost:3000/api/loggedin')
-      .then((res) => res.json());
+    return fetch('http://localhost:3000/api/loggedin', {
+      credentials: 'include'
+    }).then((res) => res.json());
   }
 }
