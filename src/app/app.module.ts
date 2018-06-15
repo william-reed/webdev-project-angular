@@ -13,6 +13,8 @@ import {RegisterComponent} from './register/register.component';
 import {LoginRegisterComponent} from './login-register/login-register.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ProfileComponent } from './profile/profile.component';
+import { RecurringCardComponent } from './recurring-card/recurring-card.component';
+import { RecurringDashboardComponent } from './recurring-dashboard/recurring-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     LoginRegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    RecurringCardComponent,
+    RecurringDashboardComponent
   ],
   imports: [
     BrowserModule,
