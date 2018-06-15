@@ -29,9 +29,7 @@ export class UserService {
   logout() {
     return fetch('http://localhost:3000/api/logout', {
       method: 'post',
-      headers: {
-        'content-type': 'application/json'
-      }
+      credentials: 'include'
     });
   }
 
