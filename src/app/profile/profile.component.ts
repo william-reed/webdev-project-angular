@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
     // are we actually logged in?
     this.userService.loggedIn()
       .then((res) => {
-        console.log(res);
         if (res) {
           this.getProfile();
           this.getCarriers();

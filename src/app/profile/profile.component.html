@@ -38,8 +38,12 @@
         <div class="card-header">
           Reminders
         </div>
-        <app-reminderlist *ngIf="reminders.length === 0; else showNoReminders" [reminders]="reminders"></app-reminderlist>
-        <div #showNoReminders class="card-body">No reminders yet.</div>
+        <app-reminderlist *ngIf="reminders.length !== 0; else showNoReminders"
+                          [reminders]="reminders"></app-reminderlist>
+        <ng-template #showNoReminders>
+          <div class="card-body">No reminders yet.</div>
+        </ng-template>
+
       </div>
     </div>
   </div>

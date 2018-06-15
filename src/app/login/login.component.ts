@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
     // redirect to profile if logged in
     this.userService.loggedIn()
       .then((res) => {
-        console.log(res);
         if (res) {
           this.router.navigate(['profile']);
         }
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
     this.userService.login(username, password)
       .then((res) => {
         if (res) {
-          console.log(res);
           this.router.navigate(['profile']);
         } else {
           alert('Invalid credentials given');
