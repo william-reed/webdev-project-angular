@@ -16,8 +16,10 @@ export class RecurringDashboardComponent implements OnInit {
 
   ngOnInit() {
     // add quotes to recurring
-    this.recurring = this.recurringService.getRecurring();
-    console.log('finish it dashboad');
+    this.recurringService.getRecurring()
+      .then((res) => {
+        this.recurring = res;
+      });
   }
 
 }
