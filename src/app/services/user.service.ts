@@ -57,4 +57,9 @@ export class UserService {
       }).then(response => response.json());
 
   }
+
+  loggedIn() {
+    return fetch('http://localhost:3000/api/loggedin')
+      .then((res) => res.json());
+  }
 }

@@ -21,10 +21,19 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    // TODO: check if they are already logged in
-    this.getProfile();
-    this.getCarriers();
-    this.getReminders();
+    // are we actually logged in?
+    this.userService.loggedIn()
+      .then((res) => {
+        console.log(res);
+        if (res) {
+          this.getProfile();
+          this.getCarriers();
+          this.getReminders();
+        } else {
+          this.router.navigate(['login-register']);
+        }
+      });
+
   }
 
   getCarriers(): void {
