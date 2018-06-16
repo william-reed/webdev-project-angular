@@ -60,14 +60,14 @@ export class ReminderService {
   // utilizing promises to ease the eventual transition to async web events
   // mocking for now
   getReminders() {
-    return fetch('http://localhost:3000/api/reminder', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder', {
       credentials: 'include'
     })
       .then(response => response.json());
   }
 
   addReminder(reminder: Reminder) {
-    return fetch('http://localhost:3000/api/reminder', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder', {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'post',
@@ -82,7 +82,7 @@ export class ReminderService {
   }
 
   getRemindersForUser() {
-    return fetch('http://localhost:3000/api/profile/reminders', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/profile/reminders', {
       credentials: 'include'
     })
       .then(response => response.json());

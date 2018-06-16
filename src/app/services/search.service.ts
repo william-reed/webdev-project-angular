@@ -7,7 +7,7 @@ import {User} from '../models/user';
 export class SearchService {
 
   search(query: string) {
-    return fetch('http://localhost:3000/api/search/' + query,
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/search/' + query,
       {
         method: 'POST'
       }).then((res) => res.json());
