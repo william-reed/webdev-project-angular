@@ -25,7 +25,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(user: User) {
-    this.userService.register(user);
+    alert('Not completed for prototype');
+    return;
+    // this.userService.register(user);
   }
 
 }

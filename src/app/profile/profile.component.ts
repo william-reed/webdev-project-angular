@@ -40,19 +40,22 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.update(this.user);
+    alert('Not completed for prototype');
+    // this.userService.update(this.user);
   }
 
   addReminder(reminder: Reminder) {
-    if (!reminder.content) {
-      alert('Reminder text not given');
-      return;
-    }
-    if (!reminder.timeToSend) {
-      alert('Date and time not given');
-      return;
-    }
-    this.reminderService.addReminder(reminder);
+    alert('Not completed for prototype');
+
+    // if (!reminder.content) {
+    //   alert('Reminder text not given');
+    //   return;
+    // }
+    // if (!reminder.timeToSend) {
+    //   alert('Date and time not given');
+    //   return;
+    // }
+    // this.reminderService.addReminder(reminder);
   }
 
   getReminders() {

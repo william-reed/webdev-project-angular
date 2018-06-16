@@ -23,4 +23,8 @@ export class RecurringCardComponent implements OnInit {
     });
   }
 
+  subscribe() {
+    alert('Not completed for prototype');
+  }
+
 }
