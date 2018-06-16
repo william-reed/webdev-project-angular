@@ -1,0 +1,41 @@
+<div>
+  <h1>SMS Reminder</h1>
+  <hr/>
+  <div>
+    <h3>Search</h3>
+    <app-search-box></app-search-box>
+
+    <hr/>
+    <h3>Search results for '{{query}}'</h3>
+
+    <hr/>
+    <div>
+
+      <div *ngIf="recurring.length !== 0; else noRecurring">
+        <h4>Matching recurring reminders</h4>
+        <div class="row">
+          <div *ngFor="let recur of recurring" class="col-sm-3">
+            <app-recurring-card [recurring]="recur"></app-recurring-card>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noRecurring>
+        <p>No recurring services matched this query.</p>
+      </ng-template>
+    </div>
+
+    <hr/>
+    <div>
+      <div *ngIf="reminders.length !== 0; else noReminders">
+        <h4>Matching user reminders</h4>
+        <app-reminderlist [reminders]="reminders"></app-reminderlist>
+      </div>
+      <ng-template #noReminders>
+        <p>No previously created reminders matched this query.</p>
+      </ng-template>
+
+    </div>
+  </div>
+
+</div>

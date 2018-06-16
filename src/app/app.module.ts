@@ -15,6 +15,8 @@ import {AppRoutingModule} from './app-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { RecurringCardComponent } from './recurring-card/recurring-card.component';
 import { RecurringDashboardComponent } from './recurring-dashboard/recurring-dashboard.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { SearchPageComponent } from './search-page/search-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RecurringDashboardComponent } from './recurring-dashboard/recurring-das
     LoginRegisterComponent,
     ProfileComponent,
     RecurringCardComponent,
-    RecurringDashboardComponent
+    RecurringDashboardComponent,
+    SearchBoxComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
