@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
     this.carrierService.getCarriers().then((carriers) => this.carriers = carriers);
   }
 
-  updateUser() {
+  updateUser(user: User) {
     alert('Not completed for prototype');
     // this.userService.update(this.user);
   }
