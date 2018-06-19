@@ -6,16 +6,13 @@
       <form class="form-signin">
         <h2 class="form-signin-heading">Profile</h2>
 
+        <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
+
         <div class="form-group">
           <label for="inputUsernameRegister">Username</label>
           <input [(ngModel)]="user.username" type="text" id="inputUsernameRegister" class="form-control"
                  placeholder="Username"
-                 name="username" required="" autofocus="">
-
-          <label for="inputPasswordRegister">Password</label>
-          <input [(ngModel)]="user.password" type="password" id="inputPasswordRegister" class="form-control"
-                 placeholder="Password"
-                 name="password" required="">
+                 name="username" required="" autofocus="" disabled>
 
           <label for="inputPhone">Phone Number</label>
           <input [(ngModel)]="user.phone" type="tel" minlength="10" maxlength="10" placeholder="6313830359"

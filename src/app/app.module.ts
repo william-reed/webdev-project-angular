@@ -17,6 +17,7 @@ import { RecurringCardComponent } from './recurring-card/recurring-card.componen
 import { RecurringDashboardComponent } from './recurring-dashboard/recurring-dashboard.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SearchPageComponent } from './search-page/search-page.component';
     RecurringCardComponent,
     RecurringDashboardComponent,
     SearchBoxComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

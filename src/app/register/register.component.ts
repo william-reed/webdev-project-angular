@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CarrierService} from '../services/carrier.service';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,9 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
   carriers: String[];
 
-  constructor(private carrierService: CarrierService, private userService: UserService) {
+  constructor(private carrierService: CarrierService,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -25,9 +28,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register(user: User) {
-    alert('Not completed for prototype');
-    return;
-    // this.userService.register(user);
+    this.userService.register(user)
+      .then((res) => {
+        if (res) {
+          this.router.navigate(['profile']);
+        } else {
+          alert('Error registering account');
+        }
+      });
   }
 
 }

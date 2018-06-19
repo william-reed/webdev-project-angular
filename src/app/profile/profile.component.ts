@@ -5,6 +5,8 @@ import {UserService} from '../services/user.service';
 import {Reminder} from '../models/reminder';
 import {ReminderService} from '../services/reminder.service';
 import {Router} from '@angular/router';
+import {Alert} from '../models/alert';
+import {AlertManager} from '../alert/alert.manager';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +14,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
   user: User = new User();
   carriers: String[];
   reminders: Reminder[] = [];
+  alertManager: AlertManager = new AlertManager();
 
   constructor(private carrierService: CarrierService, private userService: UserService,
               private reminderService: ReminderService, private router: Router) {
@@ -40,7 +44,16 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser() {
-    alert('Not completed for prototype');
+    this.userService.update(this.user)
+      .then((res) => {
+        if (res) {
+          this.user = res;
+          this.alertManager.addAlert({type: 'success', text: 'Profile updated!'});
+          // TODO: change to pretty banner
+        } else {
+          alert('Error occured updating profile.');
+        }
+      });
     // this.userService.update(this.user);
   }
 
