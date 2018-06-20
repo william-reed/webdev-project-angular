@@ -44,8 +44,9 @@ export class UserService {
     }).then(res => {
       if (res.status !== 200) {
         return Promise.reject(res.text());
+      } else {
+        return res.json();
       }
-      return res.json();
     });
   }
 

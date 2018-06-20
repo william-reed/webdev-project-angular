@@ -29,9 +29,8 @@ export class LoginComponent implements OnInit {
 
   login(username: String, password: String) {
     this.userService.login(username, password)
-      .then((res) => {
-        this.router.navigate(['profile']);
-      }).catch(rej => rej.then(error => this.alertManager.addDangerAlert(error)));
+      .then((res) => this.router.navigate(['profile']))
+      .catch(rej => rej.then(error => this.alertManager.addDangerAlert(error)));
   }
 
 }

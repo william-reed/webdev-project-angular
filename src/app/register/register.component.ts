@@ -3,6 +3,7 @@ import {CarrierService} from '../services/carrier.service';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {AlertManager} from '../alert/alert.manager';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
   carriers: String[];
+  alertManager: AlertManager = new AlertManager();
 
   constructor(private carrierService: CarrierService,
               private userService: UserService,
@@ -29,13 +31,8 @@ export class RegisterComponent implements OnInit {
 
   register(user: User) {
     this.userService.register(user)
-      .then((res) => {
-        if (res) {
-          this.router.navigate(['profile']);
-        } else {
-          alert('Error registering account');
-        }
-      });
+      .then((res) => this.router.navigate(['profile']))
+      .catch(rej => rej.then(error => this.alertManager.addDangerAlert(error)));
   }
 
 }
