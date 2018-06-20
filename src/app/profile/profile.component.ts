@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
   carriers: String[];
   reminders: Reminder[] = [];
-  alertManager: AlertManager = new AlertManager();
+  profileAlertManager: AlertManager = new AlertManager();
+  reminderAlertManager: AlertManager = new AlertManager();
 
   constructor(private carrierService: CarrierService, private userService: UserService,
               private reminderService: ReminderService, private router: Router) {
@@ -46,29 +47,32 @@ export class ProfileComponent implements OnInit {
   updateUser() {
     this.userService.update(this.user)
       .then((res) => {
-        if (res) {
-          this.user = res;
-          this.alertManager.addAlert({type: 'success', text: 'Profile updated!'});
-          // TODO: change to pretty banner
-        } else {
-          alert('Error occured updating profile.');
-        }
-      });
-    // this.userService.update(this.user);
+        this.user = res;
+        this.profileAlertManager.addSuccessAlert('Profile updated!');
+      }).catch(rej =>
+      this.profileAlertManager.addDangerAlert('Error occurred updating your profile: ' + rej));
   }
 
   addReminder(reminder: Reminder) {
-    alert('Not completed for prototype');
-
-    // if (!reminder.content) {
-    //   alert('Reminder text not given');
-    //   return;
-    // }
-    // if (!reminder.timeToSend) {
-    //   alert('Date and time not given');
-    //   return;
-    // }
-    // this.reminderService.addReminder(reminder);
+    if (!reminder.content) {
+      this.reminderAlertManager.addWarningAlert('Reminder message not given');
+      return;
+    }
+    if (!reminder.timeToSend) {
+      this.reminderAlertManager.addWarningAlert('Reminder date not given');
+      return;
+    }
+    const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
+    if (new Date(reminder.timeToSend) < fiveMinutesFuture) {
+      this.reminderAlertManager.addWarningAlert('Time to send must be more than five minutes in the future');
+      return;
+    }
+    this.reminderService.addReminder(reminder)
+      .then((res) => {
+        this.reminderAlertManager.addSuccessAlert('Reminder added!');
+        this.reminders.push(res);
+      }).catch(rej =>
+      this.reminderAlertManager.addDangerAlert('Error occurred adding alert: ' + rej));
   }
 
   getReminders() {

@@ -62,19 +62,18 @@ export class ReminderService {
   getReminders() {
     return fetch('http://localhost:3000/api/reminder', {
       credentials: 'include'
-    })
-      .then(response => response.json());
+    }).then(response => response.json());
   }
 
   addReminder(reminder: Reminder) {
     return fetch('http://localhost:3000/api/reminder', {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
-      method: 'post',
+      method: 'POST',
       headers: {
         'content-type': 'application/json'
       }
-    });
+    }).then(res => res.json());
   }
 
   addAnonReminder(user: User, reminder: Reminder) {
@@ -84,7 +83,6 @@ export class ReminderService {
   getRemindersForUser() {
     return fetch('http://localhost:3000/api/profile/reminders', {
       credentials: 'include'
-    })
-      .then(response => response.json());
+    }).then(res => res.json());
   }
 }

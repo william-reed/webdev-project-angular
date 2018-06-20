@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {Alert} from '../models/alert';
+import {AlertManager} from '../alert/alert.manager';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
+  alertManager: AlertManager = new AlertManager();
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -27,13 +30,8 @@ export class LoginComponent implements OnInit {
   login(username: String, password: String) {
     this.userService.login(username, password)
       .then((res) => {
-        if (res) {
-          this.router.navigate(['profile']);
-        } else {
-          alert('Invalid credentials given');
-          console.log('error logging in');
-        }
-      });
+        this.router.navigate(['profile']);
+      }).catch(rej => rej.then(error => this.alertManager.addDangerAlert(error)));
   }
 
 }

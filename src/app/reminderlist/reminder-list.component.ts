@@ -24,4 +24,11 @@ export class ReminderListComponent implements OnInit {
     this.reminderService.getReminders().then((reminders) => this.reminders = reminders);
   }
 
+  prettyDate(reminder: Reminder) {
+    return new Date(reminder.timeToSend).toLocaleDateString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+
 }

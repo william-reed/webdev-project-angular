@@ -17,11 +17,11 @@ export class UserService {
       headers: {
         'content-type': 'application/json'
       }
-    }).then(response => {
-      if (response.status === 200) {
-        return response.json();
+    }).then(res => {
+      if (res.status !== 200) {
+        return Promise.reject(res.text());
       } else {
-        return false;
+        return res.json();
       }
     });
   }
@@ -41,7 +41,12 @@ export class UserService {
       headers: {
         'content-type': 'application/json'
       }
-    }).then(res => res.json());
+    }).then(res => {
+      if (res.status !== 200) {
+        return Promise.reject(res.text());
+      }
+      return res.json();
+    });
   }
 
   update(user: User) {

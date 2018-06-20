@@ -11,8 +11,8 @@ export class AlertManager {
     this.timeout = timeout;
   }
 
-  public async addAlert(alert) {
-    alert.id = this.count ++;
+  private async addAlert(alert) {
+    alert.id = this.count++;
     this.alerts.push(alert);
 
     // remove after ALERT_TIMEOUT occurs
@@ -23,6 +23,38 @@ export class AlertManager {
     const removeId = this.count - 1;
     await this.sleep(this.timeout);
     this.alerts = this.alerts.filter(a => a.id !== removeId);
+  }
+
+  public addPrimaryAlert(content) {
+    this.addAlert({type: 'primary', text: content});
+  }
+
+  public addSecondaryAlert(content) {
+    this.addAlert({type: 'secondary', text: content});
+  }
+
+  public addSuccessAlert(content) {
+    this.addAlert({type: 'success', text: content});
+  }
+
+  public addDangerAlert(content) {
+    this.addAlert({type: 'danger', text: content});
+  }
+
+  public addWarningAlert(content) {
+    this.addAlert({type: 'warning', text: content});
+  }
+
+  public addInfoAlert(content) {
+    this.addAlert({type: 'info', text: content});
+  }
+
+  public addLightAlert(content) {
+    this.addAlert({type: 'light', text: content});
+  }
+
+  public addDarkAlert(content) {
+    this.addAlert({type: 'dark', text: content});
   }
 
   public getAlerts() {

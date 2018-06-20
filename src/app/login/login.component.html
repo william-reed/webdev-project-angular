@@ -1,5 +1,6 @@
 <form class="form-signin">
   <h2 class="form-signin-heading">Sign In</h2>
+  <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
   <div class="form-group">
     <label for="inputUsernameLogin">Username</label>
     <input [(ngModel)]="user.username" type="text" id="inputUsernameLogin" class="form-control"

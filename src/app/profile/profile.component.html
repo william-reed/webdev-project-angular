@@ -6,7 +6,7 @@
       <form class="form-signin">
         <h2 class="form-signin-heading">Profile</h2>
 
-        <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
+        <app-alert [alerts]="profileAlertManager.getAlerts()"></app-alert>
 
         <div class="form-group">
           <label for="inputUsernameRegister">Username</label>
@@ -28,6 +28,8 @@
 
     </div>
     <div class="col-md-6">
+      <h2>Send a new reminder</h2>
+      <app-alert [alerts]="reminderAlertManager.getAlerts()"></app-alert>
       <app-new-reminder #newReminder></app-new-reminder>
       <button class="btn btn-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
       <hr/>
