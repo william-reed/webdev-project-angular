@@ -10,8 +10,6 @@ export class ReminderService {
   constructor() {
   }
 
-  // utilizing promises to ease the eventual transition to async web events
-  // mocking for now
   getReminders() {
     return fetch('http://localhost:3000/api/reminder', {
       credentials: 'include'
