@@ -45,9 +45,10 @@
         <ng-template #showNoReminders>
           <div class="card-body">No reminders yet.</div>
         </ng-template>
-
       </div>
+      <p *ngIf="reminders.length !== 0" class="small">Reminders in green have been sent already.</p>
     </div>
+
   </div>
   <button class="btn btn-danger" (click)="logout()">Logout</button>
 </div>

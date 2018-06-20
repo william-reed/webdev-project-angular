@@ -1,6 +1,8 @@
 <ul class="list-group">
-  <li *ngFor="let reminder of reminders" class="list-group-item">
+  <li *ngFor="let reminder of reminders" class="list-group-item"
+      [ngClass]="reminder.sent && showDelete ? 'list-group-item-success' : ''">
     {{reminder.content}} - {{prettyDate(reminder)}}
-    <button *ngIf="showDelete" class="btn btn-danger float-right" (click)="delete(reminder)">Delete</button>
+    <button *ngIf="showDelete" class="btn btn-danger float-right" (click)="delete(reminder)">Delete
+    </button>
   </li>
 </ul>
