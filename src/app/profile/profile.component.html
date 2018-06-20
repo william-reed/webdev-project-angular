@@ -33,12 +33,15 @@
       <app-new-reminder #newReminder></app-new-reminder>
       <button class="btn btn-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
       <hr/>
+      <app-alert [alerts]="deleteReminderAlertManager.getAlerts()"></app-alert>
       <div class="card">
         <div class="card-header">
           Your Reminders
         </div>
         <app-reminderlist *ngIf="reminders.length !== 0; else showNoReminders"
-                          [reminders]="reminders"></app-reminderlist>
+                          [reminders]="reminders"
+                          [showDelete]="true"
+                          [alertManager]="deleteReminderAlertManager"></app-reminderlist>
         <ng-template #showNoReminders>
           <div class="card-body">No reminders yet.</div>
         </ng-template>

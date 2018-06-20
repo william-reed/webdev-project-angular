@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   reminders: Reminder[] = [];
   profileAlertManager: AlertManager = new AlertManager();
   reminderAlertManager: AlertManager = new AlertManager();
+  deleteReminderAlertManager: AlertManager = new AlertManager();
 
   constructor(private carrierService: CarrierService, private userService: UserService,
               private reminderService: ReminderService, private router: Router) {
@@ -71,6 +72,7 @@ export class ProfileComponent implements OnInit {
       .then((res) => {
         this.reminderAlertManager.addSuccessAlert('Reminder added!');
         this.reminders.push(res);
+        this.getReminders();
       }).catch(rej =>
       this.reminderAlertManager.addDangerAlert('Error occurred adding alert: ' + rej));
   }
