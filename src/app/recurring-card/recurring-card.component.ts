@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Recurring} from '../models/recurring';
 import {RecurringService} from '../services/recurring.service';
 
@@ -9,7 +9,8 @@ import {RecurringService} from '../services/recurring.service';
 })
 export class RecurringCardComponent implements OnInit {
 
-  @Input() recurring: Recurring;
+  @Input() recurring: Recurring = new Recurring();
+  @Output() recurringClicked = new EventEmitter();
 
   constructor(private recurringService: RecurringService) {
   }
@@ -24,7 +25,7 @@ export class RecurringCardComponent implements OnInit {
   }
 
   subscribe() {
-    alert('Not completed for prototype');
+    this.recurringClicked.emit(this.recurring);
   }
 
 }

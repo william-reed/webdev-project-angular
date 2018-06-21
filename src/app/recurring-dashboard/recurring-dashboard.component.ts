@@ -10,6 +10,7 @@ import {RecurringService} from '../services/recurring.service';
 export class RecurringDashboardComponent implements OnInit {
 
   recurring: Recurring[] = [];
+  selectedRecurring: Recurring = new Recurring();
 
   constructor(private recurringService: RecurringService) {
   }
@@ -20,6 +21,14 @@ export class RecurringDashboardComponent implements OnInit {
       .then((res) => {
         this.recurring = res;
       });
+  }
+
+  handleRecurringClicked(recurring) {
+    this.selectedRecurring = recurring;
+  }
+
+  handleModalClose() {
+    this.selectedRecurring = new Recurring();
   }
 
 }

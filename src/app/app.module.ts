@@ -12,12 +12,13 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginRegisterComponent} from './login-register/login-register.component';
 import {AppRoutingModule} from './app-routing.module';
-import { ProfileComponent } from './profile/profile.component';
-import { RecurringCardComponent } from './recurring-card/recurring-card.component';
-import { RecurringDashboardComponent } from './recurring-dashboard/recurring-dashboard.component';
-import { SearchBoxComponent } from './search-box/search-box.component';
-import { SearchPageComponent } from './search-page/search-page.component';
-import { AlertComponent } from './alert/alert.component';
+import {ProfileComponent} from './profile/profile.component';
+import {RecurringCardComponent} from './recurring-card/recurring-card.component';
+import {RecurringDashboardComponent} from './recurring-dashboard/recurring-dashboard.component';
+import {SearchBoxComponent} from './search-box/search-box.component';
+import {SearchPageComponent} from './search-page/search-page.component';
+import {AlertComponent} from './alert/alert.component';
+import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AlertComponent } from './alert/alert.component';
     RecurringDashboardComponent,
     SearchBoxComponent,
     SearchPageComponent,
-    AlertComponent
+    AlertComponent,
+    SubscriptionModalComponent
   ],
   imports: [
     BrowserModule,
