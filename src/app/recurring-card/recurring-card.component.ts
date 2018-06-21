@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Recurring} from '../models/recurring';
 import {RecurringService} from '../services/recurring.service';
+import {SubscriptionService} from '../services/subscription.service';
+import {Subscription} from '../models/subscription';
 
 @Component({
   selector: 'app-recurring-card',
@@ -10,9 +12,12 @@ import {RecurringService} from '../services/recurring.service';
 export class RecurringCardComponent implements OnInit {
 
   @Input() recurring: Recurring = new Recurring();
+  @Input() subscription: Subscription;
   @Output() recurringClicked = new EventEmitter();
+  @Output() unsubscribeClicked = new EventEmitter();
 
-  constructor(private recurringService: RecurringService) {
+  constructor(private recurringService: RecurringService,
+              private subscriptionService: SubscriptionService) {
   }
 
   ngOnInit() {
@@ -26,6 +31,11 @@ export class RecurringCardComponent implements OnInit {
 
   subscribe() {
     this.recurringClicked.emit(this.recurring);
+  }
+
+  unsubscribe() {
+    this.subscriptionService.deleteSubscription(this.subscription._id)
+      .then(res => this.unsubscribeClicked.emit(this.recurring.title));
   }
 
 }

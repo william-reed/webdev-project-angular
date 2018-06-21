@@ -2,10 +2,10 @@ import {Alert} from '../models/alert';
 
 export class AlertManager {
 
-  alerts: Alert[] = [];
+  private alerts: Alert[] = [];
   // set to < 0 if no timeout is desired
   timeout: number;
-  count = 0;
+  private count = 0;
 
   constructor(timeout = 10 * 1000) {
     this.timeout = timeout;
@@ -59,6 +59,10 @@ export class AlertManager {
 
   public getAlerts() {
     return this.alerts;
+  }
+
+  public clearAlerts() {
+    this.alerts = [];
   }
 
   private sleep(ms) {

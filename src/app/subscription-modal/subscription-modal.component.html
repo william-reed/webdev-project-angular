@@ -1,4 +1,4 @@
-<div class="modal fade" id="subscriptionModal">
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="subscriptionModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -10,10 +10,11 @@
       </div>
 
       <div class="modal-body">
+        <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
         <p>{{recurring.description}}</p>
         <div class="form-group">
           <label for="inputSendAt">Send Reminder at:</label>
-          <input [(ngModel)]="recurring.timeToSend" id="inputSendAt" type="datetime-local" class="form-control">
+          <input [(ngModel)]="subscription.timeToSend" id="inputSendAt" type="time" class="form-control">
         </div>
       </div>
 

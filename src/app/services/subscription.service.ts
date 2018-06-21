@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Subscription} from '../models/subscription';
-import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,13 @@ export class SubscriptionService {
       headers: {
         'content-type': 'application/json'
       }
-    }).then(res => res.json());
+    }).then(res => {
+      if (res.status !== 200) {
+        return Promise.reject(res.text());
+      } else {
+        return res.json();
+      }
+    });
   }
 
   getSubscriptionsForUser() {
