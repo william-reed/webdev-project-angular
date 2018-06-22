@@ -72,6 +72,18 @@ export class UserService {
   loggedIn() {
     return fetch('http://localhost:3000/api/loggedin', {
       credentials: 'include'
-    }).then((res) => res.json());
+    }).then(res => res.json());
+  }
+
+  getAllUsers() {
+    return fetch('http://localhost:3000/api/user', {
+      credentials: 'include'
+    }).then(res => res.json());
+  }
+
+  isAdmin() {
+    return fetch('http://localhost:3000/api/admin', {
+      credentials: 'include'
+    }).then(res => res.json());
   }
 }

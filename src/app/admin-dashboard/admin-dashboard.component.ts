@@ -8,6 +8,7 @@ import {UserService} from '../services/user.service';
 import {AnonymousReminderService} from '../services/anonymous-reminder.service';
 import {ReminderService} from '../services/reminder.service';
 import {SubscriptionService} from '../services/subscription.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -24,14 +25,31 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private userService: UserService,
               private reminderService: ReminderService,
               private anonymousReminderService: AnonymousReminderService,
-              private subscriptionService: SubscriptionService) {
+              private subscriptionService: SubscriptionService,
+              private router: Router) {
   }
 
   ngOnInit() {
     // make sure they are actullay logged in and an admin
+
+    this.userService.isAdmin()
+      .then(isAdmin => {
+        if (isAdmin) {
+          this.getUsers();
+          this.getReminders();
+          this.getAnonymousReminders();
+          this.getSubscriptions();
+        } else {
+          this.router.navigate(['login-register']);
+        }
+      });
+
+
   }
 
   getUsers() {
+    this.userService.getAllUsers()
+      .then(users => this.users = users);
   }
 
   editUser(user: User) {
@@ -43,7 +61,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   getReminders() {
-
+    this.reminderService.getAllReminders()
+      .then(reminders => this.reminders = reminders);
   }
 
   editReminder(reminder: Reminder) {
@@ -55,7 +74,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   getAnonymousReminders() {
-
+    this.anonymousReminderService.getAllAnonymousReminders()
+      .then(anonymousReminders => this.anonymousReminders = anonymousReminders);
   }
 
   editAnonymousReminder(anonymousReminder: AnonymousReminder) {
@@ -67,7 +87,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   getSubscriptions() {
-
+    this.subscriptionService.getAllSubscriptions()
+      .then(subscriptions => this.subscriptions = subscriptions);
   }
 
   editSubscription(subscription: Subscription) {

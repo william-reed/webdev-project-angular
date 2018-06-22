@@ -1,7 +1,9 @@
 <ul class="list-group">
   <li *ngFor="let entity of entities" class="list-group-item">
     {{getValues(entity)}}
-    <button class="btn btn-outline-primary float-right" (click)="edit(entity)">Edit</button>
-    <button class="btn btn-outline-danger float-right" (click)="delete(entity)">Delete</button>
+    <div class="btn-group float-right">
+      <button class="btn btn-outline-primary" (click)="edit(entity)">Edit</button>
+      <button class="btn btn-outline-danger" (click)="delete(entity)">Delete</button>
+    </div>
   </li>
 </ul>

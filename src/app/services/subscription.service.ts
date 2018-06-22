@@ -61,4 +61,9 @@ export class SubscriptionService {
       }
     });
   }
+
+  getAllSubscriptions() {
+    return fetch('http://localhost:3000/api/subscription')
+      .then(res => res.json());
+  }
 }
