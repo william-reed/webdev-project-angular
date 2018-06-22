@@ -1,4 +1,4 @@
-<div>
+<div class="mb-4">
   <h1>SMS Reminder</h1>
   <app-nav-bar></app-nav-bar>
   <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
@@ -30,7 +30,9 @@
     <div>
       <div *ngIf="reminders.length !== 0; else noReminders">
         <h4>Matching user reminders</h4>
-        <app-reminderlist [reminders]="reminders"></app-reminderlist>
+        <app-reminderlist [reminders]="reminders"
+                          [showAdd]="true"
+                          (addReminder)="handleAddReminder($event)"></app-reminderlist>
       </div>
       <ng-template #noReminders>
         <p>No previously created reminders matched this search.</p>
@@ -40,8 +42,10 @@
   </div>
 
   <app-subscription-modal [recurring]="selectedRecurring"
-                          (closeModalEvent)="handleModalClose($event)"></app-subscription-modal>
+                          (closeModalEvent)="handleSubscriptionModalClose($event)"></app-subscription-modal>
   <app-text-modal [title]="previewTitle"
                   [content]="previewText"></app-text-modal>
+  <app-add-reminder-modal [reminderContent]="selectedReminder.content"
+                          (modalClosed)="handleReminderModalClose($event)"></app-add-reminder-modal>
 
 </div>

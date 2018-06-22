@@ -22,6 +22,7 @@ export class SearchPageComponent implements OnInit {
   selectedRecurring: Recurring = new Recurring();
   query = '';
   alertManager = new AlertManager();
+  selectedReminder = new Reminder();
 
   previewTitle = '';
   previewText = '';
@@ -79,13 +80,25 @@ export class SearchPageComponent implements OnInit {
     });
   }
 
-  handleModalClose(event) {
+  handleSubscriptionModalClose(event) {
     if (event) {
       this.alertManager.addSuccessAlert(event);
     }
     this.selectedRecurring = new Recurring();
 
     this.ngOnInit();
+  }
+
+  handleReminderModalClose(event) {
+    if (event.includes('Error')) {
+      this.alertManager.addDangerAlert(event);
+    } else {
+      this.alertManager.addSuccessAlert(event);
+    }
+  }
+
+  handleAddReminder(event) {
+    this.selectedReminder = event;
   }
 
 }

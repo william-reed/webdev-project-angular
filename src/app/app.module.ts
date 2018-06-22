@@ -22,6 +22,7 @@ import {SubscriptionModalComponent} from './subscription-modal/subscription-moda
 import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TextModalComponent } from './text-modal/text-modal.component';
+import { AddReminderModalComponent } from './add-reminder-modal/add-reminder-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TextModalComponent } from './text-modal/text-modal.component';
     SubscriptionModalComponent,
     SubscriptionListComponent,
     NavBarComponent,
-    TextModalComponent
+    TextModalComponent,
+    AddReminderModalComponent
   ],
   imports: [
     BrowserModule,

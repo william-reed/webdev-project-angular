@@ -1,0 +1,20 @@
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="reminderModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Add Reminder</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <app-alert [alerts]="reminderAlertManager.getAlerts()"></app-alert>
+        <app-new-reminder #newReminder [newReminder]="reminder"></app-new-reminder>
+        <button class="btn btn-outline-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
+      </div>
+
+    </div>
+  </div>
+</div>

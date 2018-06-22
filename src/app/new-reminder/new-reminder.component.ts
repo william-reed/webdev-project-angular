@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Reminder} from '../models/reminder';
 
 @Component({
@@ -8,7 +8,7 @@ import {Reminder} from '../models/reminder';
 })
 export class NewReminderComponent implements OnInit {
 
-  newReminder: Reminder = new Reminder();
+  @Input() newReminder = new Reminder();
 
   constructor() {
   }

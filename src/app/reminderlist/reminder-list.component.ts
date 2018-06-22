@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ReminderService} from '../services/reminder.service';
 import {Reminder} from '../models/reminder';
 import {AlertManager} from '../alert/alert.manager';
@@ -13,6 +13,9 @@ export class ReminderListComponent implements OnInit {
   @Input() reminders: Reminder[];
   @Input() showDelete = false;
   @Input() alertManager: AlertManager = new AlertManager();
+  @Input() showAdd = false;
+
+  @Output() addReminder = new EventEmitter();
 
   constructor(private reminderService: ReminderService) {
   }
@@ -41,6 +44,10 @@ export class ReminderListComponent implements OnInit {
         this.reminders = this.reminders.filter(r => r._id !== reminder._id);
       })
       .catch((err) => this.alertManager.addDangerAlert('Error deleting reminder: ' + err));
+  }
+
+  add(reminder: Reminder) {
+    this.addReminder.emit(reminder);
   }
 
 }
