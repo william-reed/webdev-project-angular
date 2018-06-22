@@ -16,6 +16,11 @@ export class ReminderService {
     }).then(response => response.json());
   }
 
+  getRandomReminders() {
+    return fetch('http://localhost:3000/api/reminder/random')
+      .then(res => res.json());
+  }
+
   addReminder(reminder: Reminder) {
     return fetch('http://localhost:3000/api/reminder', {
       body: JSON.stringify(reminder),
