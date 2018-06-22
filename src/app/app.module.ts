@@ -20,6 +20,7 @@ import {SearchPageComponent} from './search-page/search-page.component';
 import {AlertComponent} from './alert/alert.component';
 import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
 import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {SubscriptionListComponent} from './subscription-list/subscription-list.c
     SearchPageComponent,
     AlertComponent,
     SubscriptionModalComponent,
-    SubscriptionListComponent
+    SubscriptionListComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

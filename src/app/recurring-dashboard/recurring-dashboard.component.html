@@ -1,7 +1,7 @@
 <div>
   <h1>SMS Reminder</h1>
-  <hr/>
-  <h2>Recurring Messages Dashboard</h2>
+  <app-nav-bar activePage="Subscriptions"></app-nav-bar>
+  <h2>Subscription Dashboard</h2>
   <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
   <div class="row">
     <div *ngFor="let recur of recurring" class="col-sm-3">
