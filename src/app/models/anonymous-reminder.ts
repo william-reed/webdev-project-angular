@@ -3,6 +3,6 @@ export class AnonymousReminder {
   content: string;
   timeToSend: Date;
   phone: Number;
-  carrier: String;
+  carrier: string;
   sent: boolean;
 }

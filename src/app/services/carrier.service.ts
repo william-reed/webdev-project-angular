@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class CarrierService {
 
-  carriers: String[] = ['Sprint', 'Verizon', 'AT&T', 'T-Mobile'];
+  carriers: string[] = ['Sprint', 'Verizon', 'AT&T', 'T-Mobile'];
 
   constructor() {
   }

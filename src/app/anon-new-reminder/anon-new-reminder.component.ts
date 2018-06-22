@@ -27,7 +27,10 @@ export class AnonNewReminderComponent implements OnInit {
   }
 
   getCarriers(): void {
-    this.carrierService.getCarriers().then((carriers) => this.carriers = carriers);
+    this.carrierService.getCarriers().then((carriers) => {
+      this.carriers = carriers;
+      this.anonymousReminder.carrier = this.carriers[0];
+    });
   }
 
   addReminder(anonymousReminder: AnonymousReminder, reminder: Reminder): void {
