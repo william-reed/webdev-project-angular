@@ -19,6 +19,9 @@ export class RecurringDashboardComponent implements OnInit {
   alertManager = new AlertManager();
   subscriptions: Subscription[];
 
+  previewTitle = '';
+  previewText = '';
+
   constructor(private recurringService: RecurringService,
               private subscriptionService: SubscriptionService,
               private userService: UserService) {
@@ -56,6 +59,13 @@ export class RecurringDashboardComponent implements OnInit {
   handleUnsubscribe(event) {
     this.ngOnInit();
     this.alertManager.addSuccessAlert('Unsubscribed from ' + event);
+  }
+
+  handlePreviewClicked(recurring) {
+    this.recurringService.getExample(recurring.title).then((res) => {
+      this.previewText = res;
+      this.previewTitle = recurring.title;
+    });
   }
 
   isUserSubscribed(recurring: Recurring) {

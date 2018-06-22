@@ -8,9 +8,12 @@
       <app-recurring-card [recurring]="recur"
                           [subscription]="isUserSubscribed(recur)"
                           (recurringClicked)="handleRecurringClicked($event)"
-                          (unsubscribeClicked)="handleUnsubscribe($event)"></app-recurring-card>
+                          (unsubscribeClicked)="handleUnsubscribe($event)"
+                          (previewClicked)="handlePreviewClicked($event)"></app-recurring-card>
     </div>
   </div>
   <app-subscription-modal [recurring]="selectedRecurring"
                           (closeModalEvent)="handleModalClose($event)"></app-subscription-modal>
+  <app-text-modal [title]="previewTitle"
+                  [content]="previewText"></app-text-modal>
 </div>

@@ -16,7 +16,7 @@ export class AnonNewReminderComponent implements OnInit {
 
   anonymousReminder: AnonymousReminder = new AnonymousReminder();
   alertManager = new AlertManager();
-  carriers: String[];
+  carriers: string[];
 
   constructor(private carrierService: CarrierService,
               private anonymousReminderService: AnonymousReminderService) {

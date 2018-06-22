@@ -13,8 +13,10 @@ export class RecurringCardComponent implements OnInit {
 
   @Input() recurring: Recurring = new Recurring();
   @Input() subscription: Subscription;
+
   @Output() recurringClicked = new EventEmitter();
   @Output() unsubscribeClicked = new EventEmitter();
+  @Output() previewClicked = new EventEmitter();
 
   constructor(private recurringService: RecurringService,
               private subscriptionService: SubscriptionService) {
@@ -24,9 +26,7 @@ export class RecurringCardComponent implements OnInit {
   }
 
   preview() {
-    this.recurringService.getExample(this.recurring.title).then((res) => {
-      alert(res);
-    });
+    this.previewClicked.emit(this.recurring);
   }
 
   subscribe() {

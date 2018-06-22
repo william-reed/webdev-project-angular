@@ -21,6 +21,7 @@ import {AlertComponent} from './alert/alert.component';
 import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
 import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TextModalComponent } from './text-modal/text-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AlertComponent,
     SubscriptionModalComponent,
     SubscriptionListComponent,
-    NavBarComponent
+    NavBarComponent,
+    TextModalComponent
   ],
   imports: [
     BrowserModule,
