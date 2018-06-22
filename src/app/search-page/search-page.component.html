@@ -1,6 +1,7 @@
 <div>
   <h1>SMS Reminder</h1>
   <app-nav-bar></app-nav-bar>
+  <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
   <div>
     <h3>Search results for '{{query}}'</h3>
 
@@ -11,7 +12,11 @@
         <h4>Matching recurring reminders</h4>
         <div class="row">
           <div *ngFor="let recur of recurring" class="col-sm-3">
-            <app-recurring-card [recurring]="recur"></app-recurring-card>
+            <app-recurring-card [recurring]="recur"
+                                [subscription]="isUserSubscribed(recur)"
+                                (recurringClicked)="handleRecurringClicked($event)"
+                                (unsubscribeClicked)="handleUnsubscribe($event)"
+                                (previewClicked)="handlePreviewClicked($event)"></app-recurring-card>
           </div>
         </div>
       </div>
@@ -33,5 +38,10 @@
 
     </div>
   </div>
+
+  <app-subscription-modal [recurring]="selectedRecurring"
+                          (closeModalEvent)="handleModalClose($event)"></app-subscription-modal>
+  <app-text-modal [title]="previewTitle"
+                  [content]="previewText"></app-text-modal>
 
 </div>
