@@ -10,7 +10,7 @@ export class ReminderService {
   constructor() {
   }
 
-  getReminders() {
+  getAllReminders() {
     return fetch('http://localhost:3000/api/reminder', {
       credentials: 'include'
     }).then(response => response.json());
@@ -25,10 +25,6 @@ export class ReminderService {
         'content-type': 'application/json'
       }
     }).then(res => res.json());
-  }
-
-  addAnonReminder(user: User, reminder: Reminder) {
-    // TODO: create new user with this info and link reminder to it?
   }
 
   getRemindersForUser() {
