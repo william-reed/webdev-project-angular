@@ -26,6 +26,24 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="updateUser(user)">Update</button>
       </form>
 
+      <hr/>
+      <div>
+        <app-alert [alerts]="subscriptionAlertManager.getAlerts()"></app-alert>
+        <div class="card">
+          <div class="card-header">
+            Your Subscriptions
+          </div>
+          <app-subscription-list *ngIf="subscriptions.length !== 0; else showNoSubscriptions"
+                                 [subscriptions]="subscriptions"
+                                 (unsubscribed)="handleUnsubscribe($event)"></app-subscription-list>
+          <ng-template #showNoSubscriptions>
+            <div class="card-body">No subscriptions yet.</div>
+          </ng-template>
+        </div>
+
+        <button routerLink="/recurring-dashboard" class="btn btn-primary mt-2">Subscription Dashboard</button>
+      </div>
+
     </div>
     <div class="col-md-6">
       <h2>Send a new reminder</h2>
@@ -50,5 +68,5 @@
     </div>
 
   </div>
-  <button class="btn btn-danger" (click)="logout()">Logout</button>
+  <button class="btn btn-danger mt-5" (click)="logout()">Logout</button>
 </div>

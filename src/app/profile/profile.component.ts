@@ -7,6 +7,8 @@ import {ReminderService} from '../services/reminder.service';
 import {Router} from '@angular/router';
 import {Alert} from '../models/alert';
 import {AlertManager} from '../alert/alert.manager';
+import {Subscription} from '../models/subscription';
+import {SubscriptionService} from '../services/subscription.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,22 +20,31 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
   carriers: String[];
   reminders: Reminder[] = [];
-  profileAlertManager: AlertManager = new AlertManager();
-  reminderAlertManager: AlertManager = new AlertManager();
-  deleteReminderAlertManager: AlertManager = new AlertManager();
+  subscriptions: Subscription[] = [];
 
-  constructor(private carrierService: CarrierService, private userService: UserService,
-              private reminderService: ReminderService, private router: Router) {
+  profileAlertManager = new AlertManager();
+  reminderAlertManager = new AlertManager();
+  deleteReminderAlertManager = new AlertManager();
+  subscriptionAlertManager = new AlertManager();
+
+  constructor(private carrierService: CarrierService,
+              private userService: UserService,
+              private reminderService: ReminderService,
+              private subscriptionService: SubscriptionService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    console.log('ngoninit');
     // are we actually logged in?
     this.userService.loggedIn()
-      .then((res) => {
-        if (res) {
+      .then((loggedIn) => {
+        console.log(loggedIn);
+        if (loggedIn) {
           this.getProfile();
           this.getCarriers();
           this.getReminders();
+          this.getSubscriptions();
         } else {
           this.router.navigate(['login-register']);
         }
@@ -78,7 +89,11 @@ export class ProfileComponent implements OnInit {
   }
 
   getReminders() {
-    this.reminderService.getRemindersForUser().then((reminders) => this.reminders = reminders);
+    this.reminderService.getRemindersForUser().then(reminders => this.reminders = reminders);
+  }
+
+  getSubscriptions() {
+    this.subscriptionService.getSubscriptionsForUser().then(subscriptions => this.subscriptions = subscriptions);
   }
 
   getProfile() {
@@ -87,6 +102,12 @@ export class ProfileComponent implements OnInit {
 
   logout() {
     this.userService.logout().then(() => this.router.navigate(['login-register']));
+  }
+
+  handleUnsubscribe(subTitle: string) {
+    this.subscriptionAlertManager.addSuccessAlert(subTitle + ' unsubscribed');
+
+    this.subscriptions = this.subscriptions.filter(sub => sub.recurringReminder !== subTitle);
   }
 
 }
