@@ -23,7 +23,7 @@
             <option *ngFor="let carrier of carriers">{{carrier}}</option>
           </select>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="updateUser(user)">Update</button>
+        <button class="btn btn-lg btn-outline-primary btn-block" type="submit" (click)="updateUser(user)">Update</button>
       </form>
 
       <hr/>
@@ -41,7 +41,7 @@
           </ng-template>
         </div>
 
-        <button routerLink="/recurring-dashboard" class="btn btn-primary mt-2">Subscription Dashboard</button>
+        <button routerLink="/recurring-dashboard" class="btn btn-outline-primary mt-2">Subscription Dashboard</button>
       </div>
 
     </div>
@@ -49,7 +49,7 @@
       <h2>Send a new reminder</h2>
       <app-alert [alerts]="reminderAlertManager.getAlerts()"></app-alert>
       <app-new-reminder #newReminder></app-new-reminder>
-      <button class="btn btn-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
+      <button class="btn btn-outline-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
       <hr/>
       <app-alert [alerts]="deleteReminderAlertManager.getAlerts()"></app-alert>
       <div class="card">
@@ -68,5 +68,5 @@
     </div>
 
   </div>
-  <button class="btn btn-danger mt-5" (click)="logout()">Logout</button>
+  <button class="btn btn-outline-danger mt-5" (click)="logout()">Logout</button>
 </div>

@@ -1,7 +1,7 @@
 <ul class="list-group">
   <li *ngFor="let subscription of subscriptions" class="list-group-item">
     {{subscription.recurringReminder}} - {{subscription.timeToSend}}
-    <button class="btn btn-danger float-right" (click)="unsubscribe(subscription)">Unsubscribe
+    <button class="btn btn-outline-danger float-right" (click)="unsubscribe(subscription)">Unsubscribe
     </button>
   </li>
 </ul>
