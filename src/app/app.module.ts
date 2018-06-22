@@ -19,7 +19,7 @@ import {SearchBoxComponent} from './search-box/search-box.component';
 import {SearchPageComponent} from './search-page/search-page.component';
 import {AlertComponent} from './alert/alert.component';
 import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
-import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
+import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
 
 @NgModule({
   declarations: [

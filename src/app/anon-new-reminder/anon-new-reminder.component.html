@@ -1,22 +1,21 @@
 <div>
+  <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
   <app-new-reminder #newReminder></app-new-reminder>
   <div class="form-group">
     <label for="inputPhone">Phone Number</label>
-    <input [(ngModel)]="anonUser.phone" type="tel" minlength="10" maxlength="10" placeholder="6313830359"
+    <input [(ngModel)]="anonymousReminder.phone" type="tel" minlength="10" maxlength="10" placeholder="6313830359"
            id="inputPhone"
            class="form-control">
   </div>
 
   <div class="form-group">
-
-
     <label for="inputCarrier">Carrier</label>
-    <select [(ngModel)]="anonUser.carrier" class="form-control" id="inputCarrier">
+    <select [(ngModel)]="anonymousReminder.carrier" class="form-control" id="inputCarrier">
       <option *ngFor="let carrier of carriers">{{carrier}}</option>
     </select>
   </div>
 
-  <button class="btn btn-primary" (click)="addReminder(anonUser, newReminder.newReminder)">
+  <button class="btn btn-primary" (click)="addReminder(anonymousReminder, newReminder.newReminder)">
     Save
   </button>
 </div>

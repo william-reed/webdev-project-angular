@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Reminder} from '../models/reminder';
-import {User} from '../models/user';
 import {AnonymousReminder} from '../models/anonymous-reminder';
 
 @Injectable({

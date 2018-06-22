@@ -3,6 +3,9 @@ import {User} from '../models/user';
 import {CarrierService} from '../services/carrier.service';
 import {ReminderService} from '../services/reminder.service';
 import {Reminder} from '../models/reminder';
+import {AnonymousReminder} from '../models/anonymous-reminder';
+import {AnonymousReminderService} from '../services/anonymous-reminder.service';
+import {AlertManager} from '../alert/alert.manager';
 
 @Component({
   selector: 'app-anon-new-reminder',
@@ -11,10 +14,12 @@ import {Reminder} from '../models/reminder';
 })
 export class AnonNewReminderComponent implements OnInit {
 
-  anonUser: User = new User();
+  anonymousReminder: AnonymousReminder = new AnonymousReminder();
+  alertManager = new AlertManager();
   carriers: String[];
 
-  constructor(private carrierService: CarrierService, private reminderService: ReminderService) {
+  constructor(private carrierService: CarrierService,
+              private anonymousReminderService: AnonymousReminderService) {
   }
 
   ngOnInit() {
@@ -25,36 +30,42 @@ export class AnonNewReminderComponent implements OnInit {
     this.carrierService.getCarriers().then((carriers) => this.carriers = carriers);
   }
 
-  addReminder(anonUser: User, reminder: Reminder): void {
-    alert('Not completed for prototype');
+  addReminder(anonymousReminder: AnonymousReminder, reminder: Reminder): void {
     // some validation first
-    //
-    // let add = true;
-    // if (!reminder.content) {
-    //   alert('No reminder text given.');
-    //   add = false;
-    // }
-    // if (!reminder.timeToSend) {
-    //   alert('No date & time given.');
-    //   add = false;
-    // }
-    // // TODO: validate date
-    // if (!anonUser.phone) {
-    //   alert('Phone number not given.');
-    //   add = false;
-    // } else if (anonUser.phone > 9999999999 || anonUser.phone <= 999999999) {
-    //   alert('Illegal phone number entered. 9 digit phone number required.');
-    //   add = false;
-    // }
-    // if (!anonUser.carrier) {
-    //   alert('Carrier not given.');
-    //   add = false;
-    // }
-    // if (!add) {
-    //   return;
-    // }
-    //
-    // this.reminderService.addAnonReminder(anonUser, reminder);
+    anonymousReminder.content = reminder.content;
+    anonymousReminder.timeToSend = reminder.timeToSend;
+
+    let add = true;
+    if (!anonymousReminder.content) {
+      this.alertManager.addDangerAlert('No reminder text given.');
+      add = false;
+    }
+    if (!anonymousReminder.timeToSend) {
+      this.alertManager.addDangerAlert('No date & time given.');
+      add = false;
+    }
+    if (!anonymousReminder.phone) {
+      this.alertManager.addDangerAlert('Phone number not given.');
+      add = false;
+    } else if (anonymousReminder.phone > 9999999999 || anonymousReminder.phone <= 999999999) {
+      this.alertManager.addDangerAlert('Illegal phone number entered. 9 digit phone number required.');
+      add = false;
+    }
+    if (!anonymousReminder.carrier) {
+      this.alertManager.addDangerAlert('Carrier not given.');
+      add = false;
+    }
+    const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
+    if (new Date(anonymousReminder.timeToSend) < fiveMinutesFuture) {
+      this.alertManager.addWarningAlert('Time to send must be more than five minutes in the future');
+      add = false;
+    }
+    if (!add) {
+      return;
+    }
+
+    this.anonymousReminderService.addAnonymousReminder(anonymousReminder)
+      .then(res => this.alertManager.addSuccessAlert('Anonymous reminder added'));
   }
 
 }
