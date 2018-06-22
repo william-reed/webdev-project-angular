@@ -1,0 +1,39 @@
+<div>
+  <h1>SMS Reminder</h1>
+  <app-nav-bar></app-nav-bar>
+  <h2>Admin Dashboard</h2>
+  <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
+
+  <div>
+    <h2>Users</h2>
+    <hr/>
+    <app-admin-entity-list (onEdit)="editUser($event)"
+                           (onDelete)="deleteUser($event)"
+                           [entities]="users"></app-admin-entity-list>
+  </div>
+
+  <div>
+    <h2>Reminders</h2>
+    <hr/>
+    <app-admin-entity-list (onEdit)="editReminder($event)"
+                           (onDelete)="deleteReminder($event)"
+                           [entities]="reminders"></app-admin-entity-list>
+  </div>
+
+  <div>
+    <h2>Anonymous Reminders</h2>
+    <hr/>
+    <app-admin-entity-list (onEdit)="editAnonymousReminder($event)"
+                           (onDelete)="deleteAnonymousReminder($event)"
+                           [entities]="anonymousReminders"></app-admin-entity-list>
+  </div>
+
+  <div>
+    <h2>Subscriptions</h2>
+    <hr/>
+    <app-admin-entity-list (onEdit)="editSubscription($event)"
+                           (onDelete)="deleteSubscription($event)"
+                           [entities]="subscriptions"></app-admin-entity-list>
+  </div>
+
+</div>

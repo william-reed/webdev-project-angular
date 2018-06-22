@@ -23,6 +23,8 @@ import {SubscriptionListComponent} from './subscription-list/subscription-list.c
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TextModalComponent } from './text-modal/text-modal.component';
 import { AddReminderModalComponent } from './add-reminder-modal/add-reminder-modal.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminEntityListComponent } from './admin-entity-list/admin-entity-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { AddReminderModalComponent } from './add-reminder-modal/add-reminder-mod
     SubscriptionListComponent,
     NavBarComponent,
     TextModalComponent,
-    AddReminderModalComponent
+    AddReminderModalComponent,
+    AdminDashboardComponent,
+    AdminEntityListComponent
   ],
   imports: [
     BrowserModule,

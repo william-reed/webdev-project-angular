@@ -5,6 +5,7 @@ import {LoginRegisterComponent} from './login-register/login-register.component'
 import {ProfileComponent} from './profile/profile.component';
 import {RecurringDashboardComponent} from './recurring-dashboard/recurring-dashboard.component';
 import {SearchPageComponent} from './search-page/search-page.component';
+import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'login-register', component: LoginRegisterComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'recurring-dashboard', component: RecurringDashboardComponent},
-  {path: 'search/:text', component: SearchPageComponent}
+  {path: 'search/:text', component: SearchPageComponent},
+  {path: 'admin', component: AdminDashboardComponent}
 ];
 
 
