@@ -1,11 +1,7 @@
 <div>
   <h1>SMS Reminder</h1>
-  <hr/>
+  <app-nav-bar></app-nav-bar>
   <div>
-    <h3>Search</h3>
-    <app-search-box></app-search-box>
-
-    <hr/>
     <h3>Search results for '{{query}}'</h3>
 
     <hr/>
@@ -21,7 +17,7 @@
       </div>
 
       <ng-template #noRecurring>
-        <p>No recurring services matched this query.</p>
+        <p>No subscription services matched this search.</p>
       </ng-template>
     </div>
 
@@ -32,7 +28,7 @@
         <app-reminderlist [reminders]="reminders"></app-reminderlist>
       </div>
       <ng-template #noReminders>
-        <p>No previously created reminders matched this query.</p>
+        <p>No previously created reminders matched this search.</p>
       </ng-template>
 
     </div>

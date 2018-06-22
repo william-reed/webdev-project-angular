@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,11 +9,18 @@ import {Component, Input, OnInit} from '@angular/core';
 export class NavBarComponent implements OnInit {
 
   @Input() activePage = '';
+  query = '';
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
   }
 
+  search(text: string) {
+    if (text === '') {
+      return;
+    }
+    this.router.navigate(['search', text]);
+  }
 }
