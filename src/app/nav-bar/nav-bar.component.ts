@@ -17,10 +17,10 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(text: string) {
-    if (text === '') {
+  search() {
+    if (this.query === '') {
       return;
     }
-    this.router.navigate(['search', text]);
+    this.router.navigate(['search', this.query]);
   }
 }

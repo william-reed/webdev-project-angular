@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class SearchBoxComponent implements OnInit {
 
-  searchText = '';
+  query = '';
 
   constructor(private router: Router) {
   }
@@ -16,11 +16,11 @@ export class SearchBoxComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(text: string) {
-    if (text === '') {
+  search() {
+    if (this.query === '') {
       return;
     }
-    this.router.navigate(['search', text]);
+    this.router.navigate(['search', this.query]);
   }
 
 }
