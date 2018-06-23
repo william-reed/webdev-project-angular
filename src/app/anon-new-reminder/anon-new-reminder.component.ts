@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../models/user';
 import {CarrierService} from '../services/carrier.service';
-import {ReminderService} from '../services/reminder.service';
 import {Reminder} from '../models/reminder';
 import {AnonymousReminder} from '../models/anonymous-reminder';
 import {AnonymousReminderService} from '../services/anonymous-reminder.service';

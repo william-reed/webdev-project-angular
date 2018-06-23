@@ -77,7 +77,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteReminder(reminder: Reminder) {
-
+    this.reminderService.deleteReminder(reminder._id)
+      .then(oldReminder => {
+        this.reminders = this.reminders.filter(r => r._id !== reminder._id);
+        this.pnotify.success('Reminder removed.');
+      });
   }
 
   getAnonymousReminders() {
@@ -90,7 +94,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteAnonymousReminder(anonymousReminder: AnonymousReminder) {
-
+    this.anonymousReminderService.deleteAnonymousReminder(anonymousReminder._id)
+      .then(oldReminder => {
+        this.anonymousReminders = this.anonymousReminders.filter(r => r._id !== anonymousReminder._id);
+        this.pnotify.success('Anonymous reminder removed.');
+      });
   }
 
   getSubscriptions() {
@@ -103,7 +111,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteSubscription(subscription: Subscription) {
-
+    this.subscriptionService.deleteSubscription(subscription._id)
+      .then(oldSubscription => {
+        this.subscriptions = this.subscriptions.filter(s => s._id !== subscription._id);
+        this.pnotify.success('Subscription removed.');
+      });
   }
 
 }

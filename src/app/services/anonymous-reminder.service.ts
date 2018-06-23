@@ -26,4 +26,11 @@ export class AnonymousReminderService {
     }).then(res => res.json());
   }
 
+  deleteAnonymousReminder(id) {
+    return fetch('http://localhost:3000/api/anonymous-reminder/' + id, {
+      method: 'DELETE',
+      credentials: 'include', // include, same-origin, *omit
+    }).then(res => res.json());
+  }
+
 }
