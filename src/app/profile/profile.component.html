@@ -63,5 +63,9 @@
     </div>
 
   </div>
-  <button class="btn btn-outline-danger mt-5" (click)="logout()">Logout</button>
+
+  <div class="mt-5 mb-5 btn-group">
+    <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+    <a *ngIf="user.isAdmin" class="btn btn-outline-primary" href="/admin">Admin Dashboard</a>
+  </div>
 </div>

@@ -4,4 +4,5 @@ export class User {
   password: string;
   phone: number;
   carrier: string;
+  isAdmin: boolean;
 }
