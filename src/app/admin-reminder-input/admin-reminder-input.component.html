@@ -1,10 +1,14 @@
 <form class="form-inline">
-  <select [(ngModel)]="reminder.userId" class="form-control mb-2 mr-sm-2" name="user">
+  <select [(ngModel)]="reminder.userId" class="form-control mb-2 mr-sm-2" name="user"
+          [disabled]="!create">
     <option *ngFor="let user of users" value={{user._id}}>{{user.username}}</option>
   </select>
-  <input [(ngModel)]="reminder.content" type="text" class="form-control mb-2 mr-sm-2" placeholder="message" name="content">
-  <input [(ngModel)]="reminder.timeToSend" type="datetime-local" class="form-control mb-2 mr-sm-2" name="date">
+  <input [(ngModel)]="reminder.content" type="text" class="form-control mb-2 mr-sm-2" placeholder="message"
+         name="content">
+  <input [(ngModel)]="reminder.timeToSendString" type="datetime-local" class="form-control mb-2 mr-sm-2" name="date">
 
 
-  <button type="submit" class="btn btn-sm btn-outline-success  mb-2">{{create ? 'Create Reminder' : 'Update Reminder'}}</button>
+  <button type="submit" class="btn btn-sm btn-outline-success mb-2" (click)="submit()">
+    {{create ? 'Create Reminder' : 'Update Reminder'}}
+  </button>
 </form>

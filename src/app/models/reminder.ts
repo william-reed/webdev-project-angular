@@ -4,5 +4,6 @@ export class Reminder {
   username: string;
   content: string;
   timeToSend: Date;
+  timeToSendString: string;
   sent: boolean;
 }

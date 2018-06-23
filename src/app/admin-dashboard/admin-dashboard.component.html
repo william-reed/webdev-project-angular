@@ -18,7 +18,8 @@
   <hr/>
   <div>
     <h3>Reminders</h3>
-    <app-admin-reminder-input [users]="users"
+    <app-admin-reminder-input (remindersChanged)="handleRemindersChanged($event)"
+                              [users]="users"
                               [create]="!currentReminder._id ? true : false"
                               [reminder]="currentReminder"></app-admin-reminder-input>
     <app-admin-entity-list (editEvent)="editReminder($event)"

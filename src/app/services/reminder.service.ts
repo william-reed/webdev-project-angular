@@ -38,6 +38,17 @@ export class ReminderService {
     }).then(res => res.json());
   }
 
+  updateReminder(reminder: Reminder) {
+    return fetch('http://localhost:3000/api/reminder/' + reminder._id, {
+      body: JSON.stringify(reminder),
+      credentials: 'include', // include, same-origin, *omit
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res => res.json());
+  }
+
   deleteReminder(reminderId: string) {
     return fetch('http://localhost:3000/api/reminder/' + reminderId, {
       method: 'DELETE',

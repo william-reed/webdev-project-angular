@@ -86,7 +86,8 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   editReminder(reminder: Reminder) {
-
+    this.currentReminder = reminder;
+    this.currentReminder.timeToSendString = this.currentReminder.timeToSend.toString().slice(0, 16);
   }
 
   deleteReminder(reminder: Reminder) {
@@ -95,6 +96,11 @@ export class AdminDashboardComponent implements OnInit {
         this.reminders = this.reminders.filter(r => r._id !== reminder._id);
         this.pnotify.success('Reminder removed.');
       });
+  }
+
+  handleRemindersChanged(reminder) {
+    this.currentReminder = new Reminder();
+    this.getReminders();
   }
 
   getAnonymousReminders() {

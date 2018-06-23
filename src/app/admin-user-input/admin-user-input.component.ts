@@ -60,7 +60,6 @@ export class AdminUserInputComponent implements OnInit {
     if (!this.validateInput()) {
       return;
     }
-    console.log('updating');
     this.userService.update(this.user)
       .then((res) => {
         this.pnotify.success('User updated');
