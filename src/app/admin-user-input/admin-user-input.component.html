@@ -7,5 +7,6 @@
     <option *ngFor="let carrier of carriers">{{carrier}}</option>
   </select>
 
-  <button type="submit" class="btn btn-sm btn-outline-success  mb-2">{{create ? 'Create User' : 'Update User'}}</button>
+  <button type="submit" class="btn btn-sm btn-outline-success  mb-2" (click)="submit()">
+    {{create ? 'Create User' : 'Update User'}}</button>
 </form>

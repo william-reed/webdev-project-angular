@@ -17,9 +17,17 @@ import {PNotifyService} from '../services/pnotify.service';
 })
 export class AdminDashboardComponent implements OnInit {
   users: User[];
+  currentUser = new User();
+
   reminders: Reminder[];
+  currentReminder = new Reminder();
+
   anonymousReminders: AnonymousReminder[];
+  currentAnonymousReminder = new AnonymousReminder();
+
   subscriptions: Subscription[];
+  currentSubscription = new Subscription();
+
   pnotify;
 
   constructor(private userService: UserService,
@@ -55,7 +63,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   editUser(user: User) {
-
+    this.currentUser = user;
   }
 
   deleteUser(user: User) {
@@ -64,7 +72,11 @@ export class AdminDashboardComponent implements OnInit {
         this.users = this.users.filter(u => u._id !== deletedUser._id);
         this.pnotify.success('User deleted.');
       });
+  }
 
+  handleUsersChanged(user) {
+    this.currentUser = new User();
+    this.getUsers();
   }
 
   getReminders() {

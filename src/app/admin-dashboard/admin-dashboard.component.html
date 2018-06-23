@@ -5,7 +5,9 @@
 
   <div>
     <h3>Users</h3>
-    <app-admin-user-input></app-admin-user-input>
+    <app-admin-user-input (usersChanged)="handleUsersChanged($event)"
+                          [create]="!currentUser._id ? true : false"
+                          [user]="currentUser"></app-admin-user-input>
     <app-admin-entity-list (editEvent)="editUser($event)"
                            (deleteEvent)="deleteUser($event)"
                            [entities]="users"
@@ -16,7 +18,9 @@
   <hr/>
   <div>
     <h3>Reminders</h3>
-    <app-admin-reminder-input [users]="users"></app-admin-reminder-input>
+    <app-admin-reminder-input [users]="users"
+                              [create]="!currentReminder._id ? true : false"
+                              [reminder]="currentReminder"></app-admin-reminder-input>
     <app-admin-entity-list (editEvent)="editReminder($event)"
                            (deleteEvent)="deleteReminder($event)"
                            [entities]="reminders"
@@ -27,7 +31,8 @@
   <hr/>
   <div>
     <h3>Anonymous Reminders</h3>
-    <app-admin-anon-reminder-input></app-admin-anon-reminder-input>
+    <app-admin-anon-reminder-input [create]="!currentAnonymousReminder._id ? true : false"
+                                   [anonymousReminder]="currentAnonymousReminder"></app-admin-anon-reminder-input>
     <app-admin-entity-list (editEvent)="editAnonymousReminder($event)"
                            (deleteEvent)="deleteAnonymousReminder($event)"
                            [entities]="anonymousReminders"
@@ -38,7 +43,9 @@
   <hr/>
   <div>
     <h3>Subscriptions</h3>
-    <app-admin-subscription-input [users]="users"></app-admin-subscription-input>
+    <app-admin-subscription-input [users]="users"
+                                  [create]="!currentSubscription._id ? true : false"
+                                  [subscription]="currentSubscription"></app-admin-subscription-input>
     <app-admin-entity-list (editEvent)="editSubscription($event)"
                            (deleteEvent)="deleteSubscription($event)"
                            [entities]="subscriptions"

@@ -9,7 +9,7 @@ import {CarrierService} from '../services/carrier.service';
 })
 export class AdminAnonReminderInputComponent implements OnInit {
   @Input() create = true;
-  anonymousReminder: AnonymousReminder = new AnonymousReminder();
+  @Input() anonymousReminder: AnonymousReminder = new AnonymousReminder();
   carriers: string[];
 
   constructor(private carrierService: CarrierService) {
