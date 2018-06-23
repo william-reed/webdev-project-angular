@@ -45,7 +45,8 @@
   <hr/>
   <div>
     <h3>Subscriptions</h3>
-    <app-admin-subscription-input [users]="users"
+    <app-admin-subscription-input (subscriptionsChanged)="handleSubscriptionsChanged($event)"
+                                  [users]="users"
                                   [create]="!currentSubscription._id ? true : false"
                                   [subscription]="currentSubscription"></app-admin-subscription-input>
     <app-admin-entity-list (editEvent)="editSubscription($event)"

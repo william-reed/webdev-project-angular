@@ -62,6 +62,10 @@ export class AdminReminderInputComponent implements OnInit {
   }
 
   validateInput(): boolean {
+    if (this.create && !this.reminder.userId) {
+      this.pnotify.error('User not selected');
+      return false;
+    }
     if (!this.reminder.content) {
       this.pnotify.error('Reminder message not given');
       return false;

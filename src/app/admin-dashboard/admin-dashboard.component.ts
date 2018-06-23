@@ -133,7 +133,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   editSubscription(subscription: Subscription) {
-
+    this.currentSubscription = subscription;
   }
 
   deleteSubscription(subscription: Subscription) {
@@ -142,6 +142,11 @@ export class AdminDashboardComponent implements OnInit {
         this.subscriptions = this.subscriptions.filter(s => s._id !== subscription._id);
         this.pnotify.success('Subscription removed.');
       });
+  }
+
+  handleSubscriptionsChanged(subscription) {
+    this.currentSubscription = new Subscription();
+    this.getSubscriptions();
   }
 
 }
