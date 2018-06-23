@@ -33,4 +33,15 @@ export class AnonymousReminderService {
     }).then(res => res.json());
   }
 
+  updateAnonymousReminder(reminder: AnonymousReminder) {
+    return fetch('http://localhost:3000/api/anonymous-reminder/' + reminder._id, {
+      body: JSON.stringify(reminder),
+      credentials: 'include', // include, same-origin, *omit
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res => res.json());
+  }
+
 }

@@ -34,9 +34,7 @@ export class AdminReminderInputComponent implements OnInit {
   }
 
   createReminder() {
-    console.log(this.reminder.timeToSendString);
     this.reminder.timeToSend = new Date(this.reminder.timeToSendString);
-    console.log(this.reminder.timeToSend);
     if (!this.validateInput()) {
       return;
     }

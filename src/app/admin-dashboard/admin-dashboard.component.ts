@@ -109,7 +109,13 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   editAnonymousReminder(anonymousReminder: AnonymousReminder) {
+    this.currentAnonymousReminder = anonymousReminder;
+    this.currentAnonymousReminder.timeToSendString = this.currentAnonymousReminder.timeToSend.toString().slice(0, 16);
+  }
 
+  handleAnonymousRemindersChanged(anonymousReminder) {
+    this.currentAnonymousReminder = new AnonymousReminder();
+    this.getAnonymousReminders();
   }
 
   deleteAnonymousReminder(anonymousReminder: AnonymousReminder) {

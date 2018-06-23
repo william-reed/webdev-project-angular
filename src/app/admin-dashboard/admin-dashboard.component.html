@@ -32,7 +32,8 @@
   <hr/>
   <div>
     <h3>Anonymous Reminders</h3>
-    <app-admin-anon-reminder-input [create]="!currentAnonymousReminder._id ? true : false"
+    <app-admin-anon-reminder-input (anonymousRemindersChanged)="handleAnonymousRemindersChanged($event)"
+                                   [create]="!currentAnonymousReminder._id ? true : false"
                                    [anonymousReminder]="currentAnonymousReminder"></app-admin-anon-reminder-input>
     <app-admin-entity-list (editEvent)="editAnonymousReminder($event)"
                            (deleteEvent)="deleteAnonymousReminder($event)"

@@ -7,10 +7,10 @@
     <option *ngFor="let carrier of carriers">{{carrier}}</option>
   </select>
 
-  <input [(ngModel)]="anonymousReminder.timeToSend" type="datetime-local" class="form-control mb-2 mr-sm-2" name="date">
+  <input [(ngModel)]="anonymousReminder.timeToSendString" type="datetime-local" class="form-control mb-2 mr-sm-2" name="date">
 
 
-  <button type="submit" class="btn btn-sm btn-outline-success  mb-2">
-    {{create ? 'Create Subscription' : 'Update Subscription'}}
+  <button type="submit" class="btn btn-sm btn-outline-success mb-2" (click)="submit()">
+    {{create ? 'Create Anonymous Reminder' : 'Update Anonymous Reminder'}}
   </button>
 </form>
