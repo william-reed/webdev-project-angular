@@ -1,0 +1,14 @@
+<form class="form-inline">
+  <select [(ngModel)]="subscription.userId" class="form-control mb-2 mr-sm-2" name="user">
+    <option *ngFor="let user of users" value={{user._id}}>{{user.username}}</option>
+  </select>
+  <select [(ngModel)]="subscription.recurringReminder" class="form-control mb-2 mr-sm-2" name="recurringService">
+    <option *ngFor="let recur of recurring" value={{recur.title}}>{{recur.title}}</option>
+  </select>
+
+  <input [(ngModel)]="subscription.timeToSend" type="time" class="form-control mb-2 mr-sm-2" name="time">
+
+
+  <button type="submit" class="btn btn-sm btn-outline-success  mb-2">{{create ? 'Create Subscription' : 'Update Subscription'}}
+  </button>
+</form>

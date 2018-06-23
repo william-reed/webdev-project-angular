@@ -5,6 +5,7 @@
 
   <div>
     <h3>Users</h3>
+    <app-admin-user-input></app-admin-user-input>
     <app-admin-entity-list (editEvent)="editUser($event)"
                            (deleteEvent)="deleteUser($event)"
                            [entities]="users"
@@ -15,6 +16,7 @@
   <hr/>
   <div>
     <h3>Reminders</h3>
+    <app-admin-reminder-input [users]="users"></app-admin-reminder-input>
     <app-admin-entity-list (editEvent)="editReminder($event)"
                            (deleteEvent)="deleteReminder($event)"
                            [entities]="reminders"
@@ -25,6 +27,7 @@
   <hr/>
   <div>
     <h3>Anonymous Reminders</h3>
+    <app-admin-anon-reminder-input></app-admin-anon-reminder-input>
     <app-admin-entity-list (editEvent)="editAnonymousReminder($event)"
                            (deleteEvent)="deleteAnonymousReminder($event)"
                            [entities]="anonymousReminders"
@@ -35,6 +38,7 @@
   <hr/>
   <div>
     <h3>Subscriptions</h3>
+    <app-admin-subscription-input [users]="users"></app-admin-subscription-input>
     <app-admin-entity-list (editEvent)="editSubscription($event)"
                            (deleteEvent)="deleteSubscription($event)"
                            [entities]="subscriptions"

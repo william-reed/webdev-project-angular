@@ -1,0 +1,13 @@
+<form class="form-inline">
+  <input [(ngModel)]="anonymousReminder.content" type="text" class="form-control mb-2 mr-sm-2" placeholder="message" name="content">
+  <input [(ngModel)]="anonymousReminder.phone" type="text" class="form-control mb-2 mr-sm-2" placeholder="phone" name="phone">
+  <select [(ngModel)]="anonymousReminder.carrier" class="form-control mb-2 mr-sm-2" name="inputCarrier">
+    <option *ngFor="let carrier of carriers">{{carrier}}</option>
+  </select>
+
+  <input [(ngModel)]="anonymousReminder.timeToSend" type="datetime-local" class="form-control mb-2 mr-sm-2" name="date">
+
+
+  <button type="submit" class="btn btn-sm btn-outline-success  mb-2">{{create ? 'Create Subscription' : 'Update Subscription'}}
+  </button>
+</form>

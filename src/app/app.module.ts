@@ -25,6 +25,10 @@ import { AddReminderModalComponent } from './add-reminder-modal/add-reminder-mod
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminEntityListComponent } from './admin-entity-list/admin-entity-list.component';
 import {PNotifyService} from './services/pnotify.service';
+import { AdminUserInputComponent } from './admin-user-input/admin-user-input.component';
+import { AdminReminderInputComponent } from './admin-reminder-input/admin-reminder-input.component';
+import { AdminAnonReminderInputComponent } from './admin-anon-reminder-input/admin-anon-reminder-input.component';
+import { AdminSubscriptionInputComponent } from './admin-subscription-input/admin-subscription-input.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,11 @@ import {PNotifyService} from './services/pnotify.service';
     TextModalComponent,
     AddReminderModalComponent,
     AdminDashboardComponent,
-    AdminEntityListComponent
+    AdminEntityListComponent,
+    AdminUserInputComponent,
+    AdminReminderInputComponent,
+    AdminAnonReminderInputComponent,
+    AdminSubscriptionInputComponent
   ],
   imports: [
     BrowserModule,

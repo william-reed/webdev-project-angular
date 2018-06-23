@@ -1,0 +1,11 @@
+<form class="form-inline">
+  <input [(ngModel)]="user.username" type="text" class="form-control mb-2 mr-sm-2" placeholder="username" name="username">
+  <input [(ngModel)]="user.password" type="password" class="form-control mb-2 mr-sm-2" placeholder="password"
+         name="password">
+  <input [(ngModel)]="user.phone" type="text" class="form-control mb-2 mr-sm-2" placeholder="phone" name="phone">
+  <select [(ngModel)]="user.carrier" class="form-control mb-2 mr-sm-2" name="inputCarrier">
+    <option *ngFor="let carrier of carriers">{{carrier}}</option>
+  </select>
+
+  <button type="submit" class="btn btn-sm btn-outline-success  mb-2">{{create ? 'Create User' : 'Update User'}}</button>
+</form>
