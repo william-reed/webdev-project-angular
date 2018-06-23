@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
     }
     this.reminderService.addReminder(reminder)
       .then((res) => {
-        this.pnotify.error('Reminder added!');
+        this.pnotify.success('Reminder added!');
         this.reminders.push(res);
         this.getReminders();
       }).catch(rej =>

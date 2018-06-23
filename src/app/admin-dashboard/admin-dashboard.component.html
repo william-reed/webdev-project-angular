@@ -18,8 +18,8 @@
     <app-admin-entity-list (editEvent)="editReminder($event)"
                            (deleteEvent)="deleteReminder($event)"
                            [entities]="reminders"
-                           [keys]="['content', 'timeToSend']"
-                           [prettyKeys]="['Message Content', 'Time to Send']"></app-admin-entity-list>
+                           [keys]="['content', 'timeToSend', 'username']"
+                           [prettyKeys]="['Message Content', 'Time to Send', 'Username']"></app-admin-entity-list>
   </div>
 
   <hr/>
@@ -38,8 +38,8 @@
     <app-admin-entity-list (editEvent)="editSubscription($event)"
                            (deleteEvent)="deleteSubscription($event)"
                            [entities]="subscriptions"
-                           [keys]="['recurringReminder', 'timeToSend']"
-                           [prettyKeys]="['Subscription Title', 'Time to Send']"></app-admin-entity-list>
+                           [keys]="['recurringReminder', 'timeToSend', 'username']"
+                           [prettyKeys]="['Subscription Title', 'Time to Send', 'Username']"></app-admin-entity-list>
   </div>
 
 </div>

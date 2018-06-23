@@ -69,7 +69,8 @@ export class AdminDashboardComponent implements OnInit {
 
   getReminders() {
     this.reminderService.getAllReminders()
-      .then(reminders => this.reminders = reminders);
+      .then(reminders =>
+        this.reminders = reminders.map(r => Object.assign({}, r, {username: r.userId.username})));
   }
 
   editReminder(reminder: Reminder) {
@@ -103,7 +104,8 @@ export class AdminDashboardComponent implements OnInit {
 
   getSubscriptions() {
     this.subscriptionService.getAllSubscriptions()
-      .then(subscriptions => this.subscriptions = subscriptions);
+      .then(subscriptions =>
+        this.subscriptions = subscriptions.map(s => Object.assign({}, s, {username: s.userId ? s.userId.username : ''})));
   }
 
   editSubscription(subscription: Subscription) {
