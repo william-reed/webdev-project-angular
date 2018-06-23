@@ -6,8 +6,8 @@ import {SearchService} from '../services/search.service';
 import {UserService} from '../services/user.service';
 import {SubscriptionService} from '../services/subscription.service';
 import {Subscription} from '../models/subscription';
-import {AlertManager} from '../alert/alert.manager';
 import {RecurringService} from '../services/recurring.service';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-search-page',
@@ -21,17 +21,19 @@ export class SearchPageComponent implements OnInit {
   subscriptions: Subscription[];
   selectedRecurring: Recurring = new Recurring();
   query = '';
-  alertManager = new AlertManager();
   selectedReminder = new Reminder();
 
   previewTitle = '';
   previewText = '';
+  pnotify;
 
   constructor(private route: ActivatedRoute,
               private searchService: SearchService,
               private userService: UserService,
               private subscriptionService: SubscriptionService,
-              private recurringService: RecurringService) {
+              private recurringService: RecurringService,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -70,7 +72,7 @@ export class SearchPageComponent implements OnInit {
 
   handleUnsubscribe(event) {
     this.ngOnInit();
-    this.alertManager.addSuccessAlert('Unsubscribed from ' + event);
+    this.pnotify.success('Unsubscribed from ' + event);
   }
 
   handlePreviewClicked(recurring) {
@@ -82,7 +84,7 @@ export class SearchPageComponent implements OnInit {
 
   handleSubscriptionModalClose(event) {
     if (event) {
-      this.alertManager.addSuccessAlert(event);
+      this.pnotify.success(event);
     }
     this.selectedRecurring = new Recurring();
 
@@ -91,9 +93,9 @@ export class SearchPageComponent implements OnInit {
 
   handleReminderModalClose(event) {
     if (event.includes('Error')) {
-      this.alertManager.addDangerAlert(event);
+      this.pnotify.error(event);
     } else {
-      this.alertManager.addSuccessAlert(event);
+      this.pnotify.success(event);
     }
   }
 

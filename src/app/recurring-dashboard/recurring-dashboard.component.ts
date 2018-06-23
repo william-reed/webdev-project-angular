@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Recurring} from '../models/recurring';
 import {RecurringService} from '../services/recurring.service';
-import {AlertManager} from '../alert/alert.manager';
 import {SubscriptionService} from '../services/subscription.service';
 import {Subscription} from '../models/subscription';
 import {UserService} from '../services/user.service';
-import {log} from 'util';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-recurring-dashboard',
@@ -16,15 +15,17 @@ export class RecurringDashboardComponent implements OnInit {
 
   recurring: Recurring[] = [];
   selectedRecurring: Recurring = new Recurring();
-  alertManager = new AlertManager();
   subscriptions: Subscription[];
 
   previewTitle = '';
   previewText = '';
+  pnotify;
 
   constructor(private recurringService: RecurringService,
               private subscriptionService: SubscriptionService,
-              private userService: UserService) {
+              private userService: UserService,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -49,7 +50,7 @@ export class RecurringDashboardComponent implements OnInit {
 
   handleModalClose(event) {
     if (event) {
-      this.alertManager.addSuccessAlert(event);
+      this.pnotify.success(event);
     }
     this.selectedRecurring = new Recurring();
 
@@ -58,7 +59,7 @@ export class RecurringDashboardComponent implements OnInit {
 
   handleUnsubscribe(event) {
     this.ngOnInit();
-    this.alertManager.addSuccessAlert('Unsubscribed from ' + event);
+    this.pnotify.success('Unsubscribed from ' + event);
   }
 
   handlePreviewClicked(recurring) {

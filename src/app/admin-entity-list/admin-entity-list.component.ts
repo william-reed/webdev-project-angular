@@ -7,10 +7,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class AdminEntityListComponent implements OnInit {
   @Input() keys: string[];
+  @Input() prettyKeys: string[];
   @Input() entities = [];
 
-  @Output() onDelete = new EventEmitter();
-  @Output() onEdit = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
+  @Output() editEvent = new EventEmitter();
 
 
   constructor() {
@@ -19,26 +20,12 @@ export class AdminEntityListComponent implements OnInit {
   ngOnInit() {
   }
 
-  getValues(entity) {
-    const values = [];
-    for (const key of this.keys) {
-      values.push(entity[key]);
-    }
-
-    let value = '';
-    for (const val of values) {
-      value += val + ' ';
-    }
-
-    return value;
-  }
-
   edit(entity) {
-    this.onEdit.emit(entity);
+    this.editEvent.emit(entity);
   }
 
   delete(entity) {
-    this.onDelete.emit(entity);
+    this.deleteEvent.emit(entity);
   }
 
 }

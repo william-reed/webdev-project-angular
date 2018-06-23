@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import {Alert} from '../models/alert';
-import {AlertManager} from '../alert/alert.manager';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +11,13 @@ import {AlertManager} from '../alert/alert.manager';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
-  alertManager: AlertManager = new AlertManager();
+  pnotify;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
+
 
   ngOnInit() {
     // redirect to profile if logged in
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
   login(username: String, password: String) {
     this.userService.login(username, password)
       .then((res) => this.router.navigate(['profile']))
-      .catch(rej => rej.then(error => this.alertManager.addDangerAlert(error)));
+      .catch(rej => rej.then(error => this.pnotify.error(error)));
   }
 
 }

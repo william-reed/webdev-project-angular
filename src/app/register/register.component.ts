@@ -3,7 +3,7 @@ import {CarrierService} from '../services/carrier.service';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import {AlertManager} from '../alert/alert.manager';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-register',
@@ -14,11 +14,13 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
   carriers: string[];
-  alertManager: AlertManager = new AlertManager();
+  pnotify;
 
   constructor(private carrierService: CarrierService,
               private userService: UserService,
-              private router: Router) {
+              private router: Router,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -34,28 +36,28 @@ export class RegisterComponent implements OnInit {
 
   register(user: User) {
     if (!user.username) {
-      this.alertManager.addDangerAlert('No username provided');
+      this.pnotify.error('No username provided');
       return;
     }
     if (!user.password) {
-      this.alertManager.addDangerAlert('No password provided');
+      this.pnotify.error('No password provided');
       return;
     }
     if (!user.phone) {
-      this.alertManager.addDangerAlert('No phone provided');
+      this.pnotify.error('No phone provided');
       return;
     } else if (user.phone > 9999999999 || user.phone <= 999999999) {
-      this.alertManager.addDangerAlert('Illegal phone number entered. 9 digit phone number required.');
+      this.pnotify.error('Illegal phone number entered. 9 digit phone number required.');
       return;
     }
     if (!user.carrier) {
-      this.alertManager.addDangerAlert('No carrier provided');
+      this.pnotify.error('No carrier provided');
       return;
     }
 
     this.userService.register(user)
       .then((res) => this.router.navigate(['profile']))
-      .catch(rej => rej.then(error => this.alertManager.addDangerAlert(error)));
+      .catch(rej => rej.then(error => this.pnotify.error(error)));
   }
 
 }

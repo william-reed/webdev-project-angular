@@ -21,8 +21,9 @@ export class AnonymousReminderService {
   }
 
   getAllAnonymousReminders() {
-    return fetch('http://localhost:3000/api/anonymous-reminder')
-      .then(res => res.json());
+    return fetch('http://localhost:3000/api/anonymous-reminder', {
+      credentials: 'include', // include, same-origin, *omit
+    }).then(res => res.json());
   }
 
 }

@@ -5,7 +5,7 @@ import {ReminderService} from '../services/reminder.service';
 import {Reminder} from '../models/reminder';
 import {AnonymousReminder} from '../models/anonymous-reminder';
 import {AnonymousReminderService} from '../services/anonymous-reminder.service';
-import {AlertManager} from '../alert/alert.manager';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-anon-new-reminder',
@@ -15,11 +15,13 @@ import {AlertManager} from '../alert/alert.manager';
 export class AnonNewReminderComponent implements OnInit {
 
   anonymousReminder: AnonymousReminder = new AnonymousReminder();
-  alertManager = new AlertManager();
   carriers: string[];
+  pnotify;
 
   constructor(private carrierService: CarrierService,
-              private anonymousReminderService: AnonymousReminderService) {
+              private anonymousReminderService: AnonymousReminderService,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -40,27 +42,27 @@ export class AnonNewReminderComponent implements OnInit {
 
     let add = true;
     if (!anonymousReminder.content) {
-      this.alertManager.addDangerAlert('No reminder text given.');
+      this.pnotify.error('No reminder text given.');
       add = false;
     }
     if (!anonymousReminder.timeToSend) {
-      this.alertManager.addDangerAlert('No date & time given.');
+      this.pnotify.error('No date & time given.');
       add = false;
     }
     if (!anonymousReminder.phone) {
-      this.alertManager.addDangerAlert('Phone number not given.');
+      this.pnotify.error('Phone number not given.');
       add = false;
     } else if (anonymousReminder.phone > 9999999999 || anonymousReminder.phone <= 999999999) {
-      this.alertManager.addDangerAlert('Illegal phone number entered. 9 digit phone number required.');
+      this.pnotify.error('Illegal phone number entered. 9 digit phone number required.');
       add = false;
     }
     if (!anonymousReminder.carrier) {
-      this.alertManager.addDangerAlert('Carrier not given.');
+      this.pnotify.error('Carrier not given.');
       add = false;
     }
     const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
     if (new Date(anonymousReminder.timeToSend) < fiveMinutesFuture) {
-      this.alertManager.addWarningAlert('Time to send must be more than five minutes in the future');
+      this.pnotify.error('Time to send must be more than five minutes in the future');
       add = false;
     }
     if (!add) {
@@ -68,7 +70,7 @@ export class AnonNewReminderComponent implements OnInit {
     }
 
     this.anonymousReminderService.addAnonymousReminder(anonymousReminder)
-      .then(res => this.alertManager.addSuccessAlert('Anonymous reminder added'));
+      .then(res => this.pnotify.success('Anonymous reminder added'));
   }
 
 }

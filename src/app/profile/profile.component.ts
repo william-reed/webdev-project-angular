@@ -5,10 +5,9 @@ import {UserService} from '../services/user.service';
 import {Reminder} from '../models/reminder';
 import {ReminderService} from '../services/reminder.service';
 import {Router} from '@angular/router';
-import {Alert} from '../models/alert';
-import {AlertManager} from '../alert/alert.manager';
 import {Subscription} from '../models/subscription';
 import {SubscriptionService} from '../services/subscription.service';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,17 +20,15 @@ export class ProfileComponent implements OnInit {
   carriers: String[];
   reminders: Reminder[] = [];
   subscriptions: Subscription[] = [];
-
-  profileAlertManager = new AlertManager();
-  reminderAlertManager = new AlertManager();
-  deleteReminderAlertManager = new AlertManager();
-  subscriptionAlertManager = new AlertManager();
+  pnotify;
 
   constructor(private carrierService: CarrierService,
               private userService: UserService,
               private reminderService: ReminderService,
               private subscriptionService: SubscriptionService,
-              private router: Router) {
+              private router: Router,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -60,32 +57,32 @@ export class ProfileComponent implements OnInit {
     this.userService.update(this.user)
       .then((res) => {
         this.user = res;
-        this.profileAlertManager.addSuccessAlert('Profile updated!');
+        this.pnotify.success('Profile updated!');
       }).catch(rej =>
-      this.profileAlertManager.addDangerAlert('Error occurred updating your profile: ' + rej));
+      this.pnotify.error('Error occurred updating your profile: ' + rej));
   }
 
   addReminder(reminder: Reminder) {
     if (!reminder.content) {
-      this.reminderAlertManager.addWarningAlert('Reminder message not given');
+      this.pnotify.error('Reminder message not given');
       return;
     }
     if (!reminder.timeToSend) {
-      this.reminderAlertManager.addWarningAlert('Reminder date not given');
+      this.pnotify.error('Reminder date not given');
       return;
     }
     const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
     if (new Date(reminder.timeToSend) < fiveMinutesFuture) {
-      this.reminderAlertManager.addWarningAlert('Time to send must be more than five minutes in the future');
+      this.pnotify.error('Time to send must be more than five minutes in the future');
       return;
     }
     this.reminderService.addReminder(reminder)
       .then((res) => {
-        this.reminderAlertManager.addSuccessAlert('Reminder added!');
+        this.pnotify.error('Reminder added!');
         this.reminders.push(res);
         this.getReminders();
       }).catch(rej =>
-      this.reminderAlertManager.addDangerAlert('Error occurred adding alert: ' + rej));
+      this.pnotify.error('Error occurred adding alert: ' + rej));
   }
 
   getReminders() {
@@ -105,7 +102,7 @@ export class ProfileComponent implements OnInit {
   }
 
   handleUnsubscribe(subTitle: string) {
-    this.subscriptionAlertManager.addSuccessAlert(subTitle + ' unsubscribed');
+    this.pnotify.success(subTitle + ' unsubscribed');
 
     this.subscriptions = this.subscriptions.filter(sub => sub.recurringReminder !== subTitle);
   }

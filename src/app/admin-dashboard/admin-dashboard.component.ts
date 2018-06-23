@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertManager} from '../alert/alert.manager';
 import {User} from '../models/user';
 import {Reminder} from '../models/reminder';
 import {AnonymousReminder} from '../models/anonymous-reminder';
@@ -9,6 +8,7 @@ import {AnonymousReminderService} from '../services/anonymous-reminder.service';
 import {ReminderService} from '../services/reminder.service';
 import {SubscriptionService} from '../services/subscription.service';
 import {Router} from '@angular/router';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,17 +16,19 @@ import {Router} from '@angular/router';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  alertManager = new AlertManager();
   users: User[];
   reminders: Reminder[];
   anonymousReminders: AnonymousReminder[];
   subscriptions: Subscription[];
+  pnotify;
 
   constructor(private userService: UserService,
               private reminderService: ReminderService,
               private anonymousReminderService: AnonymousReminderService,
               private subscriptionService: SubscriptionService,
-              private router: Router) {
+              private router: Router,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -57,6 +59,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteUser(user: User) {
+    this.userService.deleteUser(user._id)
+      .then(deletedUser => {
+        this.users = this.users.filter(u => u._id !== deletedUser._id);
+        this.pnotify.success('User deleted.');
+      });
 
   }
 

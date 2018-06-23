@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Reminder} from '../models/reminder';
 import {ReminderService} from '../services/reminder.service';
-import {AlertManager} from '../alert/alert.manager';
+import {PNotifyService} from '../services/pnotify.service';
 
 declare var $: any;
 
@@ -12,12 +12,14 @@ declare var $: any;
 })
 export class AddReminderModalComponent implements OnInit, OnChanges {
 
-  reminderAlertManager = new AlertManager();
   @Output() modalClosed = new EventEmitter();
   @Input() reminderContent: string;
   reminder = new Reminder();
+  pnotify;
 
-  constructor(private reminderService: ReminderService) {
+  constructor(private reminderService: ReminderService,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -34,16 +36,16 @@ export class AddReminderModalComponent implements OnInit, OnChanges {
 
   addReminder(reminder: Reminder) {
     if (!reminder.content) {
-      this.reminderAlertManager.addWarningAlert('Reminder message not given');
+      this.pnotify.error('Reminder message not given');
       return;
     }
     if (!reminder.timeToSend) {
-      this.reminderAlertManager.addWarningAlert('Reminder date not given');
+      this.pnotify.error('Reminder date not given');
       return;
     }
     const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
     if (new Date(reminder.timeToSend) < fiveMinutesFuture) {
-      this.reminderAlertManager.addWarningAlert('Time to send must be more than five minutes in the future');
+      this.pnotify.error('Time to send must be more than five minutes in the future');
       return;
     }
 

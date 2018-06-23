@@ -2,38 +2,44 @@
   <h1>SMS Reminder</h1>
   <app-nav-bar></app-nav-bar>
   <h2>Admin Dashboard</h2>
-  <app-alert [alerts]="alertManager.getAlerts()"></app-alert>
 
   <div>
-    <h2>Users</h2>
-    <hr/>
-    <app-admin-entity-list (onEdit)="editUser($event)"
-                           (onDelete)="deleteUser($event)"
-                           [entities]="users"></app-admin-entity-list>
+    <h3>Users</h3>
+    <app-admin-entity-list (editEvent)="editUser($event)"
+                           (deleteEvent)="deleteUser($event)"
+                           [entities]="users"
+                           [keys]="['username', 'phone', 'carrier']"
+                           [prettyKeys]="['Username', 'Phone Number', 'Carrier']"></app-admin-entity-list>
   </div>
 
+  <hr/>
   <div>
-    <h2>Reminders</h2>
-    <hr/>
-    <app-admin-entity-list (onEdit)="editReminder($event)"
-                           (onDelete)="deleteReminder($event)"
-                           [entities]="reminders"></app-admin-entity-list>
+    <h3>Reminders</h3>
+    <app-admin-entity-list (editEvent)="editReminder($event)"
+                           (deleteEvent)="deleteReminder($event)"
+                           [entities]="reminders"
+                           [keys]="['content', 'timeToSend']"
+                           [prettyKeys]="['Message Content', 'Time to Send']"></app-admin-entity-list>
   </div>
 
+  <hr/>
   <div>
-    <h2>Anonymous Reminders</h2>
-    <hr/>
-    <app-admin-entity-list (onEdit)="editAnonymousReminder($event)"
-                           (onDelete)="deleteAnonymousReminder($event)"
-                           [entities]="anonymousReminders"></app-admin-entity-list>
+    <h3>Anonymous Reminders</h3>
+    <app-admin-entity-list (editEvent)="editAnonymousReminder($event)"
+                           (deleteEvent)="deleteAnonymousReminder($event)"
+                           [entities]="anonymousReminders"
+                           [keys]="['content', 'timeToSend', 'phone', 'carrier']"
+                           [prettyKeys]="['Message Content', 'Time to Send', 'Phone Number', 'Carrier']"></app-admin-entity-list>
   </div>
 
+  <hr/>
   <div>
-    <h2>Subscriptions</h2>
-    <hr/>
-    <app-admin-entity-list (onEdit)="editSubscription($event)"
-                           (onDelete)="deleteSubscription($event)"
-                           [entities]="subscriptions"></app-admin-entity-list>
+    <h3>Subscriptions</h3>
+    <app-admin-entity-list (editEvent)="editSubscription($event)"
+                           (deleteEvent)="deleteSubscription($event)"
+                           [entities]="subscriptions"
+                           [keys]="['recurringReminder', 'timeToSend']"
+                           [prettyKeys]="['Subscription Title', 'Time to Send']"></app-admin-entity-list>
   </div>
 
 </div>

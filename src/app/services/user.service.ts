@@ -86,4 +86,11 @@ export class UserService {
       credentials: 'include'
     }).then(res => res.json());
   }
+
+  deleteUser(userId) {
+    return fetch('http://localhost:3000/api/user/' + userId, {
+      method: 'DELETE',
+      credentials: 'include'
+    }).then(res => res.json());
+  }
 }

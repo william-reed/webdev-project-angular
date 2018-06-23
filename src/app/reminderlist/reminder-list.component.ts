@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ReminderService} from '../services/reminder.service';
 import {Reminder} from '../models/reminder';
-import {AlertManager} from '../alert/alert.manager';
+import {PNotifyService} from '../services/pnotify.service';
 
 @Component({
   selector: 'app-reminderlist',
@@ -12,12 +12,14 @@ export class ReminderListComponent implements OnInit {
 
   @Input() reminders: Reminder[];
   @Input() showDelete = false;
-  @Input() alertManager: AlertManager = new AlertManager();
   @Input() showAdd = false;
 
   @Output() addReminder = new EventEmitter();
+  pnotify;
 
-  constructor(private reminderService: ReminderService) {
+  constructor(private reminderService: ReminderService,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -40,10 +42,10 @@ export class ReminderListComponent implements OnInit {
   delete(reminder: Reminder) {
     this.reminderService.deleteReminder(reminder._id)
       .then(() => {
-        this.alertManager.addSuccessAlert('Reminder deleted');
+        this.pnotify.success('Reminder deleted');
         this.reminders = this.reminders.filter(r => r._id !== reminder._id);
       })
-      .catch((err) => this.alertManager.addDangerAlert('Error deleting reminder: ' + err));
+      .catch((err) => this.pnotify.error('Error deleting reminder: ' + err));
   }
 
   add(reminder: Reminder) {

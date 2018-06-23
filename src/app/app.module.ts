@@ -17,7 +17,6 @@ import {RecurringCardComponent} from './recurring-card/recurring-card.component'
 import {RecurringDashboardComponent} from './recurring-dashboard/recurring-dashboard.component';
 import {SearchBoxComponent} from './search-box/search-box.component';
 import {SearchPageComponent} from './search-page/search-page.component';
-import {AlertComponent} from './alert/alert.component';
 import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
 import {SubscriptionListComponent} from './subscription-list/subscription-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -25,6 +24,7 @@ import { TextModalComponent } from './text-modal/text-modal.component';
 import { AddReminderModalComponent } from './add-reminder-modal/add-reminder-modal.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminEntityListComponent } from './admin-entity-list/admin-entity-list.component';
+import {PNotifyService} from './services/pnotify.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,6 @@ import { AdminEntityListComponent } from './admin-entity-list/admin-entity-list.
     RecurringDashboardComponent,
     SearchBoxComponent,
     SearchPageComponent,
-    AlertComponent,
     SubscriptionModalComponent,
     SubscriptionListComponent,
     NavBarComponent,
@@ -55,7 +54,7 @@ import { AdminEntityListComponent } from './admin-entity-list/admin-entity-list.
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [PNotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

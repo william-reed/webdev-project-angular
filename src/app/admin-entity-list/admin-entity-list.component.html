@@ -1,9 +1,19 @@
-<ul class="list-group">
-  <li *ngFor="let entity of entities" class="list-group-item">
-    {{getValues(entity)}}
-    <div class="btn-group float-right">
-      <button class="btn btn-outline-primary" (click)="edit(entity)">Edit</button>
-      <button class="btn btn-outline-danger" (click)="delete(entity)">Delete</button>
-    </div>
-  </li>
-</ul>
+<table class="table table-striped table-sm">
+  <thead>
+  <tr>
+    <th *ngFor="let key of prettyKeys" scope="col">{{key | titlecase}}</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let entity of entities">
+    <td *ngFor="let key of keys">{{entity[key]}}</td>
+    <td>
+      <div class="btn-group float-right">
+        <button class="btn btn-outline-primary btn-sm" (click)="edit(entity)">Edit</button>
+        <button class="btn btn-outline-danger btn-sm" (click)="delete(entity)">Delete</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

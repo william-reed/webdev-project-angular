@@ -63,7 +63,8 @@ export class SubscriptionService {
   }
 
   getAllSubscriptions() {
-    return fetch('http://localhost:3000/api/subscription')
-      .then(res => res.json());
+    return fetch('http://localhost:3000/api/subscription', {
+      credentials: 'include', // include, same-origin, *omit
+    }).then(res => res.json());
   }
 }

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Recurring} from '../models/recurring';
 import {Subscription} from '../models/subscription';
-import {AlertManager} from '../alert/alert.manager';
 import {SubscriptionService} from '../services/subscription.service';
+import {PNotifyService} from '../services/pnotify.service';
 
 declare var $: any;
 
@@ -16,9 +16,11 @@ export class SubscriptionModalComponent implements OnInit, OnChanges {
   @Input() recurring: Recurring = new Recurring();
   @Output() closeModalEvent = new EventEmitter();
   subscription: Subscription = new Subscription();
-  alertManager: AlertManager = new AlertManager();
+  pnotify;
 
-  constructor(private subscriptionService: SubscriptionService) {
+  constructor(private subscriptionService: SubscriptionService,
+              private pnotifyService: PNotifyService) {
+    this.pnotify = pnotifyService.getPNotify();
   }
 
   ngOnInit() {
@@ -39,7 +41,7 @@ export class SubscriptionModalComponent implements OnInit, OnChanges {
     if (emitEvent) {
       this.closeModalEvent.emit();
     }
-    this.alertManager.clearAlerts();
+    this.pnotify.removeAll();
     this.subscription = new Subscription();
     $('#subscriptionModal').modal('hide');
   }
@@ -47,7 +49,7 @@ export class SubscriptionModalComponent implements OnInit, OnChanges {
   subscribe() {
     // check date is entered
     if (!this.subscription.timeToSend) {
-      this.alertManager.addDangerAlert('A full time must be entered');
+      this.pnotify.error('A full time must be entered');
       return;
     }
     this.subscription.recurringReminder = this.recurring.title;
@@ -58,7 +60,7 @@ export class SubscriptionModalComponent implements OnInit, OnChanges {
         this.closeModalEvent.emit('Subscription created');
         this.closeModal(false);
       })
-      .catch(res => res.then(err => this.alertManager.addDangerAlert('Error occured: ' + err)));
+      .catch(res => res.then(err => this.pnotify.error('Error occured: ' + err)));
   }
 
 }

@@ -10,7 +10,6 @@
       </div>
 
       <div class="modal-body">
-        <app-alert [alerts]="reminderAlertManager.getAlerts()"></app-alert>
         <app-new-reminder #newReminder [newReminder]="reminder"></app-new-reminder>
         <button class="btn btn-outline-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
       </div>

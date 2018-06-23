@@ -6,8 +6,6 @@
       <form class="form-signin">
         <h2 class="form-signin-heading">Profile</h2>
 
-        <app-alert [alerts]="profileAlertManager.getAlerts()"></app-alert>
-
         <div class="form-group">
           <label for="inputUsernameRegister">Username</label>
           <input [(ngModel)]="user.username" type="text" id="inputUsernameRegister" class="form-control"
@@ -23,12 +21,12 @@
             <option *ngFor="let carrier of carriers">{{carrier}}</option>
           </select>
         </div>
-        <button class="btn btn-lg btn-outline-primary btn-block" type="submit" (click)="updateUser(user)">Update</button>
+        <button class="btn btn-lg btn-outline-primary btn-block" type="submit" (click)="updateUser(user)">Update
+        </button>
       </form>
 
       <hr/>
       <div>
-        <app-alert [alerts]="subscriptionAlertManager.getAlerts()"></app-alert>
         <div class="card">
           <div class="card-header">
             Your Subscriptions
@@ -47,19 +45,16 @@
     </div>
     <div class="col-md-6">
       <h2>Send a new reminder</h2>
-      <app-alert [alerts]="reminderAlertManager.getAlerts()"></app-alert>
       <app-new-reminder #newReminder></app-new-reminder>
       <button class="btn btn-outline-primary" (click)="addReminder(newReminder.newReminder)">Add Reminder</button>
       <hr/>
-      <app-alert [alerts]="deleteReminderAlertManager.getAlerts()"></app-alert>
       <div class="card">
         <div class="card-header">
           Your Reminders
         </div>
         <app-reminderlist *ngIf="reminders.length !== 0; else showNoReminders"
                           [reminders]="reminders"
-                          [showDelete]="true"
-                          [alertManager]="deleteReminderAlertManager"></app-reminderlist>
+                          [showDelete]="true"></app-reminderlist>
         <ng-template #showNoReminders>
           <div class="card-body">No reminders yet.</div>
         </ng-template>
