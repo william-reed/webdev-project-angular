@@ -1,3 +1,3 @@
 'use strict';
 
-export const SMS_REMINDER_API = process.env.SMS_REMINDER_API;
+export const SMS_REMINDER_API = 'https://wrr-webdev-project-node.herokuapp.com';
