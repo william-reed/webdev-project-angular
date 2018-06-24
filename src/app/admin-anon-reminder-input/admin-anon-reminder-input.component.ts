@@ -83,11 +83,11 @@ export class AdminAnonReminderInputComponent implements OnInit {
       this.pnotify.error('Reminder date not given');
       return false;
     }
-    const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
-    if (new Date(this.anonymousReminder.timeToSend) < fiveMinutesFuture) {
-      this.pnotify.error('Time to send must be more than five minutes in the future');
-      return false;
-    }
+    // const fiveMinutesFuture = new Date(new Date().getTime() + 5 * 60 * 1000);
+    // if (new Date(this.anonymousReminder.timeToSend) < fiveMinutesFuture) {
+    //   this.pnotify.error('Time to send must be more than five minutes in the future');
+    //   return false;
+    // }
     return true;
   }
 
