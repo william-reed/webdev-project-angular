@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AnonymousReminder} from '../models/anonymous-reminder';
+import {SMS_REMINDER_API} from '../../../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AnonymousReminderService {
   }
 
   addAnonymousReminder(reminder: AnonymousReminder) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/anonymous-reminder', {
+    return fetch(SMS_REMINDER_API + '/api/anonymous-reminder', {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'POST',
@@ -21,20 +22,20 @@ export class AnonymousReminderService {
   }
 
   getAllAnonymousReminders() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/anonymous-reminder', {
+    return fetch(SMS_REMINDER_API + '/api/anonymous-reminder', {
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }
 
   deleteAnonymousReminder(id) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/anonymous-reminder/' + id, {
+    return fetch(SMS_REMINDER_API + '/api/anonymous-reminder/' + id, {
       method: 'DELETE',
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }
 
   updateAnonymousReminder(reminder: AnonymousReminder) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/anonymous-reminder/' + reminder._id, {
+    return fetch(SMS_REMINDER_API + '/api/anonymous-reminder/' + reminder._id, {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'PUT',

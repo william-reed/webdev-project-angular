@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from '../models/user';
+import {SMS_REMINDER_API} from '../../../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
   }
 
   login(username: String, password: String) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/login', {
+    return fetch(SMS_REMINDER_API + '/api/login', {
       body: JSON.stringify({username, password}),
       method: 'POST',
       credentials: 'include',
@@ -27,14 +28,14 @@ export class UserService {
   }
 
   logout() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/logout', {
+    return fetch(SMS_REMINDER_API + '/api/logout', {
       method: 'POST',
       credentials: 'include'
     });
   }
 
   register(user: User) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/user', {
+    return fetch(SMS_REMINDER_API + '/api/user', {
       body: JSON.stringify(user),
       method: 'POST',
       credentials: 'include',
@@ -51,7 +52,7 @@ export class UserService {
   }
 
   update(user: User) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/user', {
+    return fetch(SMS_REMINDER_API + '/api/user', {
       method: 'PUT',
       credentials: 'include',
       body: JSON.stringify(user),
@@ -62,7 +63,7 @@ export class UserService {
   }
 
   profile() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/profile',
+    return fetch(SMS_REMINDER_API + '/api/profile',
       {
         credentials: 'include', // include, same-origin, *omit
       }).then(response => response.json());
@@ -70,25 +71,25 @@ export class UserService {
   }
 
   loggedIn() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/loggedin', {
+    return fetch(SMS_REMINDER_API + '/api/loggedin', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   getAllUsers() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/user', {
+    return fetch(SMS_REMINDER_API + '/api/user', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   isAdmin() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/admin', {
+    return fetch(SMS_REMINDER_API + '/api/admin', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   deleteUser(userId) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/user/' + userId, {
+    return fetch(SMS_REMINDER_API + '/api/user/' + userId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => res.json());

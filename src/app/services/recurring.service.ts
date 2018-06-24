@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from '../models/user';
+import {SMS_REMINDER_API} from '../../../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +7,17 @@ import {User} from '../models/user';
 export class RecurringService {
 
   getAllRecurring() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/recurring')
+    return fetch(SMS_REMINDER_API + '/api/recurring')
       .then((res) => res.json());
   }
 
   getExample(title: String) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/recurring/example/' + title)
+    return fetch(SMS_REMINDER_API + '/api/recurring/example/' + title)
       .then(res => res.text());
   }
 
   getRecurringByTitle(title: String) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/recurring/' + title)
+    return fetch(SMS_REMINDER_API + '/api/recurring/' + title)
       .then((res) => res.json());
   }
 }

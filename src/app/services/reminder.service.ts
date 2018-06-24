@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Reminder} from '../models/reminder';
-import {User} from '../models/user';
+import {SMS_REMINDER_API} from '../../../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +11,18 @@ export class ReminderService {
   }
 
   getAllReminders() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/reminder', {
+    return fetch(SMS_REMINDER_API + '/api/reminder', {
       credentials: 'include'
     }).then(response => response.json());
   }
 
   getRandomReminders() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/reminder/random')
+    return fetch(SMS_REMINDER_API + '/api/reminder/random')
       .then(res => res.json());
   }
 
   addReminder(reminder: Reminder) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/reminder', {
+    return fetch(SMS_REMINDER_API + '/api/reminder', {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'POST',
@@ -33,13 +33,13 @@ export class ReminderService {
   }
 
   getRemindersForUser() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/profile/reminders', {
+    return fetch(SMS_REMINDER_API + '/api/profile/reminders', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   updateReminder(reminder: Reminder) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/reminder/' + reminder._id, {
+    return fetch(SMS_REMINDER_API + '/api/reminder/' + reminder._id, {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'PUT',
@@ -50,7 +50,7 @@ export class ReminderService {
   }
 
   deleteReminder(reminderId: string) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/reminder/' + reminderId, {
+    return fetch(SMS_REMINDER_API + '/api/reminder/' + reminderId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => {

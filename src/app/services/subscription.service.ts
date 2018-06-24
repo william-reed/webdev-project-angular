@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subscription} from '../models/subscription';
+import {SMS_REMINDER_API} from '../../../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,13 @@ export class SubscriptionService {
   }
 
   getSubscriptions() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/subscription', {
+    return fetch(SMS_REMINDER_API + '/api/subscription', {
       credentials: 'include'
     }).then(response => response.json());
   }
 
   addSubscription(subscription: Subscription) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/subscription', {
+    return fetch(SMS_REMINDER_API + '/api/subscription', {
       body: JSON.stringify(subscription),
       credentials: 'include',
       method: 'POST',
@@ -33,13 +34,13 @@ export class SubscriptionService {
   }
 
   getSubscriptionsForUser() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/profile/subscriptions', {
+    return fetch(SMS_REMINDER_API + '/api/profile/subscriptions', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   updateSubscription(subscription: Subscription) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/subscription/' + subscription._id, {
+    return fetch(SMS_REMINDER_API + '/api/subscription/' + subscription._id, {
       body: JSON.stringify(subscription),
       credentials: 'include',
       method: 'PUT',
@@ -50,7 +51,7 @@ export class SubscriptionService {
   }
 
   deleteSubscription(subscriptionId: string) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/subscription/' + subscriptionId, {
+    return fetch(SMS_REMINDER_API + '/api/subscription/' + subscriptionId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => {
@@ -63,7 +64,7 @@ export class SubscriptionService {
   }
 
   getAllSubscriptions() {
-    return fetch(process.env.SMS_REMINDER_API + '/api/subscription', {
+    return fetch(SMS_REMINDER_API + '/api/subscription', {
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }

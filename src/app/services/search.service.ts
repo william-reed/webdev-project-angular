@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from '../models/user';
+import {SMS_REMINDER_API} from '../../../globals';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import {User} from '../models/user';
 export class SearchService {
 
   search(query: string) {
-    return fetch(process.env.SMS_REMINDER_API + '/api/search/' + query,
+    return fetch(SMS_REMINDER_API + '/api/search/' + query,
       {
         method: 'POST'
       }).then((res) => res.json());
