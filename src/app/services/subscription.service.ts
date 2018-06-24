@@ -10,13 +10,13 @@ export class SubscriptionService {
   }
 
   getSubscriptions() {
-    return fetch('http://localhost:3000/api/subscription', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription', {
       credentials: 'include'
     }).then(response => response.json());
   }
 
   addSubscription(subscription: Subscription) {
-    return fetch('http://localhost:3000/api/subscription', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription', {
       body: JSON.stringify(subscription),
       credentials: 'include',
       method: 'POST',
@@ -33,13 +33,13 @@ export class SubscriptionService {
   }
 
   getSubscriptionsForUser() {
-    return fetch('http://localhost:3000/api/profile/subscriptions', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/profile/subscriptions', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   updateSubscription(subscription: Subscription) {
-    return fetch('http://localhost:3000/api/subscription/' + subscription._id, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription/' + subscription._id, {
       body: JSON.stringify(subscription),
       credentials: 'include',
       method: 'PUT',
@@ -50,7 +50,7 @@ export class SubscriptionService {
   }
 
   deleteSubscription(subscriptionId: string) {
-    return fetch('http://localhost:3000/api/subscription/' + subscriptionId, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription/' + subscriptionId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => {
@@ -63,7 +63,7 @@ export class SubscriptionService {
   }
 
   getAllSubscriptions() {
-    return fetch('http://localhost:3000/api/subscription', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription', {
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }

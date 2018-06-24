@@ -11,18 +11,18 @@ export class ReminderService {
   }
 
   getAllReminders() {
-    return fetch('http://localhost:3000/api/reminder', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder', {
       credentials: 'include'
     }).then(response => response.json());
   }
 
   getRandomReminders() {
-    return fetch('http://localhost:3000/api/reminder/random')
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder/random')
       .then(res => res.json());
   }
 
   addReminder(reminder: Reminder) {
-    return fetch('http://localhost:3000/api/reminder', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder', {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'POST',
@@ -33,13 +33,13 @@ export class ReminderService {
   }
 
   getRemindersForUser() {
-    return fetch('http://localhost:3000/api/profile/reminders', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/profile/reminders', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   updateReminder(reminder: Reminder) {
-    return fetch('http://localhost:3000/api/reminder/' + reminder._id, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder/' + reminder._id, {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'PUT',
@@ -50,7 +50,7 @@ export class ReminderService {
   }
 
   deleteReminder(reminderId: string) {
-    return fetch('http://localhost:3000/api/reminder/' + reminderId, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/reminder/' + reminderId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => {

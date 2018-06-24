@@ -10,7 +10,7 @@ export class UserService {
   }
 
   login(username: String, password: String) {
-    return fetch('http://localhost:3000/api/login', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/login', {
       body: JSON.stringify({username, password}),
       method: 'POST',
       credentials: 'include',
@@ -27,14 +27,14 @@ export class UserService {
   }
 
   logout() {
-    return fetch('http://localhost:3000/api/logout', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/logout', {
       method: 'POST',
       credentials: 'include'
     });
   }
 
   register(user: User) {
-    return fetch('http://localhost:3000/api/user', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/user', {
       body: JSON.stringify(user),
       method: 'POST',
       credentials: 'include',
@@ -51,7 +51,7 @@ export class UserService {
   }
 
   update(user: User) {
-    return fetch('http://localhost:3000/api/user', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/user', {
       method: 'PUT',
       credentials: 'include',
       body: JSON.stringify(user),
@@ -62,7 +62,7 @@ export class UserService {
   }
 
   profile() {
-    return fetch('http://localhost:3000/api/profile',
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/profile',
       {
         credentials: 'include', // include, same-origin, *omit
       }).then(response => response.json());
@@ -70,25 +70,25 @@ export class UserService {
   }
 
   loggedIn() {
-    return fetch('http://localhost:3000/api/loggedin', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/loggedin', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   getAllUsers() {
-    return fetch('http://localhost:3000/api/user', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/user', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   isAdmin() {
-    return fetch('http://localhost:3000/api/admin', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/admin', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   deleteUser(userId) {
-    return fetch('http://localhost:3000/api/user/' + userId, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/user/' + userId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => res.json());

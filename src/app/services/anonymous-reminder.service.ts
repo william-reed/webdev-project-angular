@@ -10,7 +10,7 @@ export class AnonymousReminderService {
   }
 
   addAnonymousReminder(reminder: AnonymousReminder) {
-    return fetch('http://localhost:3000/api/anonymous-reminder', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/anonymous-reminder', {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'POST',
@@ -21,20 +21,20 @@ export class AnonymousReminderService {
   }
 
   getAllAnonymousReminders() {
-    return fetch('http://localhost:3000/api/anonymous-reminder', {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/anonymous-reminder', {
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }
 
   deleteAnonymousReminder(id) {
-    return fetch('http://localhost:3000/api/anonymous-reminder/' + id, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/anonymous-reminder/' + id, {
       method: 'DELETE',
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }
 
   updateAnonymousReminder(reminder: AnonymousReminder) {
-    return fetch('http://localhost:3000/api/anonymous-reminder/' + reminder._id, {
+    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/anonymous-reminder/' + reminder._id, {
       body: JSON.stringify(reminder),
       credentials: 'include', // include, same-origin, *omit
       method: 'PUT',
