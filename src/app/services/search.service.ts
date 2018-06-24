@@ -7,7 +7,7 @@ import {User} from '../models/user';
 export class SearchService {
 
   search(query: string) {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/search/' + query,
+    return fetch(process.env.SMS_REMINDER_API + '/api/search/' + query,
       {
         method: 'POST'
       }).then((res) => res.json());

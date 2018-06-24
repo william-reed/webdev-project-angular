@@ -10,13 +10,13 @@ export class SubscriptionService {
   }
 
   getSubscriptions() {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription', {
+    return fetch(process.env.SMS_REMINDER_API + '/api/subscription', {
       credentials: 'include'
     }).then(response => response.json());
   }
 
   addSubscription(subscription: Subscription) {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription', {
+    return fetch(process.env.SMS_REMINDER_API + '/api/subscription', {
       body: JSON.stringify(subscription),
       credentials: 'include',
       method: 'POST',
@@ -33,13 +33,13 @@ export class SubscriptionService {
   }
 
   getSubscriptionsForUser() {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/profile/subscriptions', {
+    return fetch(process.env.SMS_REMINDER_API + '/api/profile/subscriptions', {
       credentials: 'include'
     }).then(res => res.json());
   }
 
   updateSubscription(subscription: Subscription) {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription/' + subscription._id, {
+    return fetch(process.env.SMS_REMINDER_API + '/api/subscription/' + subscription._id, {
       body: JSON.stringify(subscription),
       credentials: 'include',
       method: 'PUT',
@@ -50,7 +50,7 @@ export class SubscriptionService {
   }
 
   deleteSubscription(subscriptionId: string) {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription/' + subscriptionId, {
+    return fetch(process.env.SMS_REMINDER_API + '/api/subscription/' + subscriptionId, {
       method: 'DELETE',
       credentials: 'include'
     }).then(res => {
@@ -63,7 +63,7 @@ export class SubscriptionService {
   }
 
   getAllSubscriptions() {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/subscription', {
+    return fetch(process.env.SMS_REMINDER_API + '/api/subscription', {
       credentials: 'include', // include, same-origin, *omit
     }).then(res => res.json());
   }

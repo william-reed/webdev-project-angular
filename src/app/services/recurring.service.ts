@@ -7,17 +7,17 @@ import {User} from '../models/user';
 export class RecurringService {
 
   getAllRecurring() {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/recurring')
+    return fetch(process.env.SMS_REMINDER_API + '/api/recurring')
       .then((res) => res.json());
   }
 
   getExample(title: String) {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/recurring/example/' + title)
+    return fetch(process.env.SMS_REMINDER_API + '/api/recurring/example/' + title)
       .then(res => res.text());
   }
 
   getRecurringByTitle(title: String) {
-    return fetch('https://wrr-webdev-project-node.herokuapp.com/api/recurring/' + title)
+    return fetch(process.env.SMS_REMINDER_API + '/api/recurring/' + title)
       .then((res) => res.json());
   }
 }
