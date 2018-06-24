@@ -35,7 +35,8 @@ export class ReminderListComponent implements OnInit {
   prettyDate(reminder: Reminder) {
     return new Date(reminder.timeToSend).toLocaleDateString('en-US', {
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      timeZone: 'America/New_York'
     });
   }
 
