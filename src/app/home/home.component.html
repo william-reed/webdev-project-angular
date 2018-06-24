@@ -1,19 +1,26 @@
 <div>
   <h1>SMS Reminder</h1>
   <app-nav-bar activePage="Home"></app-nav-bar>
-  <div class="row">
+  <div class="row mb-8">
     <div class="col-sm-6">
-      <p>Welcome to SMS Reminder!</p>
-      <p>SMS Reminder allows you to schedule text messages to get reminders or various items sent to you in the
-        future.</p>
-      <a class="btn btn-outline-primary" href="/login-register">Login / Register</a>
-      <hr/>
-      <app-anon-new-reminder></app-anon-new-reminder>
+      <div>
+        <h5>Welcome to SMS Reminder!</h5>
+        <p>SMS Reminder allows you to schedule text messages to get reminders or various subscriptions sent to you
+          daily.</p>
+        <a class="btn btn-outline-primary" href="/login-register">Login / Register</a>
+      </div>
       <hr/>
 
       <div>
-        <h3>Recurring Reminders</h3>
-        <p>Recurring reminders are sent once a day utilizing various API's to gather different information to forward to
+        <h3>Anonymous Reminder</h3>
+        <p>Send an anonymous reminder that is not linked to an account</p>
+        <app-anon-new-reminder></app-anon-new-reminder>
+      </div>
+      <hr/>
+
+      <div>
+        <h3>Subscriptions</h3>
+        <p>Subscriptions are sent once a day utilizing various services to gather different information to send to
           your phone.</p>
         <a class="btn btn-outline-primary" href="/recurring-dashboard">Setup</a>
       </div>
@@ -31,7 +38,7 @@
       <div>
         <h3>Search</h3>
         <p>Search through previously sent reminders to quickly add them yourself and search through the various
-          recurring reminder options</p>
+          subscriptions</p>
         <app-search-box></app-search-box>
       </div>
 
